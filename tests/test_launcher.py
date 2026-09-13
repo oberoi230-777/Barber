@@ -155,3 +155,17 @@ def test_tools_exist():
                  "download-roms.bat", "organize-roms.bat", "test-controller.bat",
                  "update-system.bat", "diagnose.bat"]:
         assert (ROOT / "Tools" / name).exists(), f"missing Tools/{name}"
+
+
+def test_cli_version_subprocess():
+    """The launcher CLI must start and report its version (LAUNCH.bat path)."""
+    import subprocess
+
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "Launcher" / "launcher.py"), "--version"],
+        capture_output=True,
+        text=True,
+        timeout=120,
+    )
+    assert result.returncode == 0
+    assert "Retro Gaming Launcher v" in result.stdout

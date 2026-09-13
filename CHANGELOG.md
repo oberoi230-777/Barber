@@ -1,5 +1,20 @@
 # Changelog
 
+## v2.0.2 (2026-09-13) — LAUNCH.bat no longer closes silently
+
+- FIXED: `LAUNCH.bat` flashed a console window and vanished when Python was
+  broken or only the Windows Store stub was installed (`where python`
+  finds the stub, which then exits instantly). The script now probes every
+  candidate with `--version` (must exit 0) so the stub is skipped, shows a
+  dedicated "Python Not Found" screen with Store-stub guidance, and —
+  most importantly — NEVER closes silently on failure: any crash now
+  shows the exit code, the Python version, the last 20 log lines, and a
+  pause. The `.bat` exit code is also propagated to callers.
+- ADDED: the launcher refuses to run on Python < 3.9 with a clear message
+  (exit code 2) instead of a cryptic traceback.
+- ADDED: regression tests (CLI subprocess smoke test + LAUNCH.bat static
+  checks) and a "window closes instantly" troubleshooting section.
+
 ## v2.0.1 (2026-09-13) — Strict-mode crash fix
 
 - FIXED: `Test-BiosFiles : The property 'bios' cannot be found on this

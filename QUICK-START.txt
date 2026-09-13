@@ -139,7 +139,11 @@ STEP 2: if it persists, check TROUBLESHOOTING.md (full guide).
 STEP 3: Logs in Logs\ show exactly what failed.
 
 Quick fixes:
-* "Python not found" -> run SETUP.bat (auto-installs Python)
+* "Python not found" (or the LAUNCH window flashes and closes) -> run
+  SETUP.bat (installs real Python automatically, skips the Store stub).
+  If the Microsoft Store opens when you type python, you only have the
+  stub: install from python.org or disable it under Settings -> Apps ->
+  Advanced app settings -> App execution aliases
 * Controller not working -> connect BEFORE launching; test with
   Tools\test-controller.bat; Win+R -> joy.cpl must list the pad
 * Game won't load -> missing BIOS or core? diagnose.bat tells you

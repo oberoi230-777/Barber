@@ -16,6 +16,31 @@ LAUNCH.bat --self-test    # deep self-test of scanner/configs
 
 ## 🔴 Setup Issues
 
+### Launcher Window Opens and Closes Instantly
+
+**Problem:** double-clicking `LAUNCH.bat` flashes a console window that
+immediately disappears.
+
+**Cause (99% of cases):** Windows finds a `python` that isn't real —
+usually the **Microsoft Store stub** (an App Execution Alias). The old
+`LAUNCH.bat` accepted it, the stub exited instantly, and the window closed
+before you could read anything.
+
+**Fixes:**
+
+1. Update to the latest scripts — `LAUNCH.bat` now probes that Python
+   really runs, shows a "Python Not Found" screen for the stub case, and
+   pauses with the error + log tail on ANY failure instead of closing.
+2. Run `SETUP.bat` — it offers to install real Python via winget.
+3. Or install Python manually from
+   [python.org/downloads](https://www.python.org/downloads/) (check
+   "Add Python to PATH").
+4. Or disable the stub: Settings → Apps → Advanced app settings →
+   App execution aliases → turn off the `python.exe` / `python3.exe`
+   entries — then install real Python.
+5. If the window still closes, open `Logs\launcher.log` and follow the
+   section below matching the last error lines.
+
 ### Python Not Found
 
 **Problem:** "Python not found" error when running LAUNCH.bat

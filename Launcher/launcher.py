@@ -1556,6 +1556,18 @@ def build_arg_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Optional[List[str]] = None) -> int:
+    if sys.version_info < (3, 9):
+        message = (
+            "ERROR: Python 3.9 or newer is required (found %s).\n"
+            "Install Python from https://www.python.org/downloads/ "
+            "(check 'Add Python to PATH'),\n"
+            "or run SETUP.bat, which can install Python automatically."
+            % sys.version.split()[0]
+        )
+        log.error(message)
+        print(message)
+        return 2
+
     args = build_arg_parser().parse_args(argv)
 
     if args.version:

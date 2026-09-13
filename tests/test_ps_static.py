@@ -114,3 +114,22 @@ def test_archive_metadata_parsing_has_no_direct_property_access():
 
 def test_strict_mode_still_enabled():
     assert "Set-StrictMode -Version Latest" in read_ps1("Tools/ps-common.ps1")
+
+
+def test_launch_bat_validates_python_before_use():
+    # `where` alone accepts the broken Windows Store stub, so LAUNCH.bat
+    # must probe that the candidate REALLY runs before using it.
+    text = (ROOT / "LAUNCH.bat").read_text(encoding="utf-8-sig")
+    assert "--version >nul" in text
+    assert "if not defined PYCMD" in text
+    assert "App execution aliases" in text  # Store-stub guidance
+
+
+def test_launch_bat_never_closes_silently_on_error():
+    text = (ROOT / "LAUNCH.bat").read_text(encoding="utf-8-sig")
+    assert "EXITCODE" in text
+    assert "launcher.log" in text
+    fail_idx = text.find("stopped with an error")
+    assert fail_idx != -1
+    assert "pause" in text[fail_idx:]
+    assert text.rstrip().endswith("exit /b %EXITCODE%")
