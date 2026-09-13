@@ -1,5 +1,20 @@
 # Changelog
 
+## v2.0.1 (2026-09-13) — Strict-mode crash fix
+
+- FIXED: `Test-BiosFiles : The property 'bios' cannot be found on this
+  object` crash during `SETUP` / `diagnose` / system-check. Under
+  `Set-StrictMode -Version Latest`, reading an optional JSON property that
+  a system doesn't define (most systems have no `bios` key) is a fatal
+  error. Added a `Get-ObjectProperty` helper (null/dictionary/PSObject
+  safe) and routed every optional `ConvertFrom-Json` property through it:
+  `Test-BiosFiles`, `Get-VersionInfo`, `Ensure-PortableFolders`,
+  organizer `Get-ExtensionMap`, and both archive.org JSON parsers in the
+  ROM downloader.
+- ADDED: `tests/test_ps_static.py` — 7 regression tests that parse the
+  actual `.ps1` sources and fail if any hardened function regresses to
+  direct strict-unsafe property access.
+
 ## v2.0.0 (2026-09-13) — "Fully working & super automated"
 
 ### Launcher (`Launcher/launcher.py`) — rebuilt

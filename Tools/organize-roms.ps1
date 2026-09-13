@@ -41,11 +41,15 @@ function Get-ExtensionMap {
     }
     foreach ($system in $systems) {
         $exts = @()
-        foreach ($ext in @($system.extensions)) {
+        $rawExts = @(Get-ObjectProperty -InputObject $system -Name "extensions" -Default @())
+        foreach ($ext in $rawExts) {
+            if ([string]::IsNullOrWhiteSpace([string]$ext)) { continue }
             $normalized = ("." + [string]$ext).ToLowerInvariant().Replace("..", ".")
             $exts += $normalized
         }
-        $map[[string]$system.folder] = $exts
+        $folderName = [string](Get-ObjectProperty -InputObject $system -Name "folder" -Default "")
+        if (-not $folderName) { continue }
+        $map[$folderName] = $exts
     }
     return $map
 }

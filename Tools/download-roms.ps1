@@ -99,14 +99,17 @@ function Get-ArchiveItemFiles {
             $global:ProgressPreference = $previousProgress
         }
         $metadata = $response.Content | ConvertFrom-Json
-        foreach ($file in @($metadata.files)) {
-            if ($file.source -ne "original") { continue }
-            $name = [string]$file.name
+        $metaFiles = @(Get-ObjectProperty -InputObject $metadata -Name "files" -Default @())
+        foreach ($file in $metaFiles) {
+            $sourceKind = [string](Get-ObjectProperty -InputObject $file -Name "source" -Default "")
+            if ($sourceKind -ne "original") { continue }
+            $name = [string](Get-ObjectProperty -InputObject $file -Name "name" -Default "")
             if (-not $name) { continue }
             $lower = $name.ToLowerInvariant()
             # Skip metadata, torrents, images, and huge disc images.
             if ($lower -match "_(files\.xml|meta\.(xml|sqlite))$" -or $lower -match "\.(torrent|png|jpe?g|gif|txt|pdf|xml)$") { continue }
-            if ($file.size -and [long]$file.size -gt 64MB) { continue }
+            $sizeValue = Get-ObjectProperty -InputObject $file -Name "size" -Default 0
+            if ($sizeValue -and [long]$sizeValue -gt 64MB) { continue }
             if ($Extensions.Count -gt 0) {
                 $ext = [IO.Path]::GetExtension($lower)
                 if ($Extensions -notcontains $ext) { continue }
@@ -148,14 +151,18 @@ function Find-ArchiveRomCandidates {
             $global:ProgressPreference = $previousProgress
         }
         $search = $response.Content | ConvertFrom-Json
+        $responseNode = Get-ObjectProperty -InputObject $search -Name "response" -Default $null
+        $docs = @(Get-ObjectProperty -InputObject $responseNode -Name "docs" -Default @())
         $probed = 0
-        foreach ($doc in @($search.response.docs)) {
+        foreach ($doc in $docs) {
             if ($probed -ge $MaxItems) { break }
             $probed++
-            $files = Get-ArchiveItemFiles -ItemId $doc.identifier -Extensions $Extensions
+            $identifier = [string](Get-ObjectProperty -InputObject $doc -Name "identifier" -Default "")
+            if (-not $identifier) { continue }
+            $files = Get-ArchiveItemFiles -ItemId $identifier -Extensions $Extensions
             if ($files.Count -gt 0) {
                 $results += [pscustomobject]@{
-                    Item  = [string]$doc.identifier
+                    Item  = $identifier
                     Files = @($files | Select-Object -First $MaxFiles)
                 }
                 break

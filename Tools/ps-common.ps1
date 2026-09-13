@@ -196,6 +196,34 @@ function Get-TempPath {
     return Join-Path -Path ([IO.Path]::GetTempPath()) -ChildPath $Name
 }
 
+function Get-ObjectProperty {
+    param(
+        [Parameter(Mandatory = $false)][object]$InputObject = $null,
+        [Parameter(Mandatory = $true)][string]$Name,
+        $Default = $null
+    )
+
+    # StrictMode-safe property lookup for JSON-derived objects.
+    # Direct access like $system.bios throws PropertyNotFoundStrict when the
+    # key is absent (e.g. systems without BIOS entries), so every optional
+    # property of ConvertFrom-Json output MUST go through this helper.
+    # Present-but-null values also fall back to $Default.
+    if ($null -eq $InputObject) {
+        return $Default
+    }
+    if ($InputObject -is [System.Collections.IDictionary]) {
+        if ($InputObject.Contains($Name) -and $null -ne $InputObject[$Name]) {
+            return $InputObject[$Name]
+        }
+        return $Default
+    }
+    $property = $InputObject.PSObject.Properties[$Name]
+    if ($null -ne $property -and $null -ne $property.Value) {
+        return $property.Value
+    }
+    return $Default
+}
+
 function Get-VersionInfo {
     param([Parameter(Mandatory = $true)][string]$RootPath)
 
@@ -207,8 +235,10 @@ function Get-VersionInfo {
     if (Test-Path -LiteralPath $versionFile) {
         try {
             $parsed = Get-Content -LiteralPath $versionFile -Raw -Encoding UTF8 | ConvertFrom-Json
-            if ($parsed.version) { $info.Version = [string]$parsed.version }
-            if ($parsed.retroarchStable) { $info.RetroArchStable = [string]$parsed.retroarchStable }
+            $versionValue = Get-ObjectProperty -InputObject $parsed -Name "version" -Default ""
+            if ($versionValue) { $info.Version = [string]$versionValue }
+            $stableValue = Get-ObjectProperty -InputObject $parsed -Name "retroarchStable" -Default ""
+            if ($stableValue) { $info.RetroArchStable = [string]$stableValue }
         }
         catch {
         }
@@ -899,8 +929,9 @@ function Ensure-PortableFolders {
     }
     else {
         foreach ($system in $systems) {
-            if ($system.folder) {
-                Ensure-Directory -Path (Join-Path $RootPath ("ROMs\{0}" -f $system.folder)) | Out-Null
+            $folderName = [string](Get-ObjectProperty -InputObject $system -Name "folder" -Default "")
+            if ($folderName) {
+                Ensure-Directory -Path (Join-Path $RootPath ("ROMs\{0}" -f $folderName)) | Out-Null
             }
         }
     }
@@ -991,10 +1022,14 @@ function Test-BiosFiles {
 
     $systems = Get-SystemsConfig -RootPath $RootPath
     foreach ($system in $systems) {
-        if (-not $system.bios) { continue }
-        foreach ($biosFile in @($system.bios)) {
-            $label = "{0}/{1}" -f $system.folder, $biosFile
-            if (Test-Path -LiteralPath (Join-Path $biosDir ([string]$biosFile))) {
+        $folderName = [string](Get-ObjectProperty -InputObject $system -Name "folder" -Default "")
+        $biosFiles = @(Get-ObjectProperty -InputObject $system -Name "bios" -Default @())
+        if ($biosFiles.Count -eq 0) { continue }
+        foreach ($biosFile in $biosFiles) {
+            $biosName = [string]$biosFile
+            if ([string]::IsNullOrWhiteSpace($biosName)) { continue }
+            $label = "{0}/{1}" -f $folderName, $biosName
+            if (Test-Path -LiteralPath (Join-Path $biosDir $biosName)) {
                 if (-not $present.Contains($label)) { $present.Add($label) }
             }
             else {
