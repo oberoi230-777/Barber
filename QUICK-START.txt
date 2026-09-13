@@ -1,201 +1,190 @@
-╔═══════════════════════════════════════════════════════════════════════╗
-║                                                                       ║
-║          🎮  PORTABLE RETRO GAMING SUITE - QUICK START  🎮          ║
-║                                                                       ║
-╚═══════════════════════════════════════════════════════════════════════╝
++=================================================================+
+|                                                                 |
+|          RETRO GAMING SUITE v2.0 - QUICK START                   |
+|                                                                 |
++=================================================================+
 
 
-📋 FIRST TIME SETUP (Do this once)
-═══════════════════════════════════════════════════════════════════════
+FIRST TIME SETUP (do this once)
+=================================================================
 
-1. Right-click SETUP.bat → "Run as Administrator"
-   
-2. Wait for setup to complete (downloads RetroArch and cores)
-   • Downloads ~300-500 MB
-   • Takes 5-15 minutes depending on internet speed
-   
-3. Optional: Download sample games when prompted
+EASY WAY (recommended):
+1. Copy this folder to your USB drive
+2. Right-click SETUP.bat -> "Run as administrator"
+3. Follow the prompts (it installs Python, RetroArch, all cores)
 
-4. Done! Your gaming system is ready
+ZERO-CLICK WAY (fully automatic):
+1. Copy this folder to your USB drive
+2. Run:  SETUP.bat -Unattended -IncludeSampleRoms
+3. Done - sample games included!
 
-
-🚀 LAUNCHING GAMES
-═══════════════════════════════════════════════════════════════════════
-
-1. Double-click LAUNCH.bat
-
-2. Use arrow keys or controller to navigate
-
-3. Select a system (NES, SNES, Genesis, etc.)
-
-4. Select a game
-
-5. Play!
+LINUX / macOS:
+1. Open a terminal in this folder
+2. Run:  ./setup.sh --yes
+3. Run:  ./launch.sh
 
 
-🎮 CONTROLS
-═══════════════════════════════════════════════════════════════════════
+LAUNCHING GAMES
+=================================================================
+
+1. Double-click LAUNCH.bat (or ./launch.sh)
+2. Pick a system with Up/Down + Enter
+3. Start typing to search, pick a game, Enter
+4. Play!
+
+TIP: press F1 inside the launcher for the full control list.
+
+
+CONTROLS
+=================================================================
 
 IN LAUNCHER:
-  • Arrow Keys / D-Pad ........ Navigate menus
-  • Enter / A Button .......... Select
-  • ESC / B Button ............ Back/Exit
-  • F11 ....................... Toggle fullscreen
+  * Arrow Keys / D-Pad ........ Navigate menus
+  * Enter / A Button .......... Select / Launch
+  * ESC / B Button ............ Back / Exit
+  * Type letters .............. Search games live
+  * F5 or Y ................... Favorite a game (*)
+  * F6 or X ................... Show favorites only
+  * R (systems view) .......... Rescan game library
+  * F1 ........................ Help screen
+  * F11 ....................... Toggle fullscreen
 
 IN GAME:
-  • Arrow Keys / D-Pad ........ Move
-  • Z or A Button ............. Button A
-  • X or B Button ............. Button B
-  • Enter ..................... Start
-  • Shift ..................... Select
-  • F1 ........................ RetroArch menu
-  • F2 ........................ Quick save
-  • F4 ........................ Quick load
-  • Space (hold) .............. Fast forward
-  • ESC ....................... Exit game
+  * Arrow Keys / D-Pad ........ Move
+  * Z or A Button ............. Button A
+  * X or B Button ............. Button B
+  * Enter ..................... Start
+  * Shift ..................... Select
+  * F1 ........................ RetroArch menu
+  * F2 ........................ Quick save
+  * F4 ........................ Quick load
+  * Space (hold) .............. Fast forward
+  * ESC ....................... Exit game (back to launcher)
 
 
-📥 ADDING GAMES (ROMs)
-═══════════════════════════════════════════════════════════════════════
+ADDING GAMES (ROMs)
+=================================================================
 
-METHOD 1: Automatic Download (Legal ROMs)
-  • Run: Tools\download-roms.bat
-  • Select system
-  • Downloads free homebrew games
+METHOD 1: Automatic Download (free legal homebrew)
+  * Run: Tools\download-roms.bat
+  * Pick a system, or download the sample pack for all systems
 
 METHOD 2: Manual Copy
-  • Copy ROM files to correct folder in ROMs\
-    Example: NES games go in ROMs\NES\
-  • Supported formats listed in README.md
-  • Games appear automatically in launcher
+  * Copy ROM files into ROMs\<system>\  (e.g. ROMs\NES\)
+  * Zipped ROMs work for cartridge systems
+  * Press R in the launcher to rescan
+
+METHOD 3: Organize a messy folder
+  * Run: Tools\organize-roms.bat -SourceFolder "C:\Downloads\ROMs"
+  * Add -DryRun first to preview, -MoveFiles to move instead of copy
 
 
-💾 REQUIRED BIOS FILES (Some systems only)
-═══════════════════════════════════════════════════════════════════════
+REQUIRED BIOS FILES (some systems only)
+=================================================================
 
-Some systems need BIOS files to work:
-  • PlayStation 1 → scph1001.bin
-  • Dreamcast → dc_boot.bin, dc_flash.bin
-  • Neo Geo → neogeo.zip
+  * PlayStation 1 -> scph1001.bin
+  * Dreamcast -> dc_boot.bin, dc_flash.bin
+  * Nintendo DS -> bios7.bin, bios9.bin, firmware.bin
+  * Neo Geo -> neogeo.zip (keep zipped!)
 
 Place BIOS files in: Emulators\RetroArch\system\
 
-See Configs\BIOS-INFO.txt for complete guide
+Run Tools\diagnose.bat to see exactly which ones YOU are missing.
+See Configs\BIOS-INFO.txt for the complete guide.
 
 
-🔧 USEFUL TOOLS
-═══════════════════════════════════════════════════════════════════════
+USEFUL TOOLS
+=================================================================
 
-• Tools\download-roms.bat ......... Get free legal ROMs
-• Tools\organize-roms.ps1 ......... Auto-organize ROM files
-• Tools\test-controller.bat ....... Test gamepad input
-• Tools\update-system.bat ......... Update emulators
+* Tools\diagnose.bat .............. Health check + one-click auto-repair
+* Tools\download-roms.bat ......... Get free legal ROMs
+* Tools\organize-roms.bat ......... Auto-organize ROM files
+* Tools\test-controller.bat ....... Test gamepad input (add -TextOnly)
+* Tools\update-system.bat ......... Update cores/emulators (try -Action All)
 
-
-⚙️ SUPPORTED SYSTEMS
-═══════════════════════════════════════════════════════════════════════
-
-✓ Nintendo: NES, SNES, N64, Game Boy, GBA
-✓ Sega: Genesis, Master System, Game Gear, Dreamcast
-✓ Sony: PlayStation 1, PSP
-✓ Arcade: MAME, Neo Geo, CPS1/2/3
-✓ Atari: 2600
-✓ And more!
+Launcher power commands:
+* LAUNCH.bat --check .............. Health check from the launcher
+* LAUNCH.bat --launch NES/Zelda ... Start a game directly
+* LAUNCH.bat --text ............... Terminal UI (no graphics needed)
 
 
-🖥️ SYSTEM REQUIREMENTS
-═══════════════════════════════════════════════════════════════════════
+SUPPORTED SYSTEMS
+=================================================================
+
+NES, SNES, N64, Game Boy, GBA, Nintendo DS,
+Genesis, Master System, Game Gear,
+PlayStation 1, PSP, Dreamcast,
+Arcade (MAME), Neo Geo, Atari 2600
+
+
+SYSTEM REQUIREMENTS
+=================================================================
 
 MINIMUM:
-  • Windows 7 or newer
-  • USB 2.0 port
-  • 1 GB free space on USB drive
-  • Python 3.6+
+  * Windows 10/11 (or modern Linux/macOS)
+  * USB 2.0 port, 2 GB free space
+  * Python 3.9+ (SETUP installs it automatically via winget)
 
 RECOMMENDED:
-  • Windows 10/11
-  • USB 3.0+ port
-  • 4 GB+ free space
-  • USB controller (Xbox, PlayStation, generic)
-  • 1080p or 4K display
+  * USB 3.0+ drive, 8 GB+ free space
+  * USB/Bluetooth controller (Xbox, PlayStation, Switch Pro, 8BitDo)
+  * 1080p or 4K display
 
 
-❓ TROUBLESHOOTING
-═══════════════════════════════════════════════════════════════════════
+TROUBLESHOOTING (99% of problems)
+=================================================================
 
-🔴 "Python not found"
-   → Install Python from https://www.python.org/downloads/
-   → Check "Add Python to PATH" during installation
-   → Run SETUP.bat again
+STEP 1: run Tools\diagnose.bat and accept the auto-repair.
+STEP 2: if it persists, check TROUBLESHOOTING.md (full guide).
+STEP 3: Logs in Logs\ show exactly what failed.
 
-🔴 Controller not working
-   → Connect before launching
-   → Run Tools\test-controller.bat to verify
-   → Check Windows Game Controller settings
-
-🔴 Game won't load
-   → Check if BIOS file is required (see BIOS-INFO.txt)
-   → Verify ROM file is in correct folder
-   → Try different ROM file
-
-🔴 Slow performance
-   → Use USB 3.0+ port (blue USB ports)
-   → Close other programs
-   → Disable shaders in RetroArch (F1 → Settings)
-
-🔴 No games showing
-   → Add ROM files to ROMs\ folders
-   → Use Tools\download-roms.bat for free games
-   → Restart launcher
+Quick fixes:
+* "Python not found" (or the LAUNCH window flashes and closes) -> run
+  SETUP.bat (installs real Python automatically, skips the Store stub).
+  If the Microsoft Store opens when you type python, you only have the
+  stub: install from python.org or disable it under Settings -> Apps ->
+  Advanced app settings -> App execution aliases
+* Controller not working -> connect BEFORE launching; test with
+  Tools\test-controller.bat; Win+R -> joy.cpl must list the pad
+* Game won't load -> missing BIOS or core? diagnose.bat tells you
+* Slow performance -> use blue USB 3.0 ports; close other programs;
+  press F1 in game -> disable shaders
+* No games showing -> add ROMs, then press R to rescan in launcher
 
 
-📂 FOLDER STRUCTURE
-═══════════════════════════════════════════════════════════════════════
+FOLDER STRUCTURE
+=================================================================
 
 RetroGaming\
-├── SETUP.bat ................. First-time setup
-├── LAUNCH.bat ................ Start gaming!
-├── Emulators\ ................ RetroArch emulator
-├── ROMs\ ..................... Your game collection
-│   ├── NES\
-│   ├── SNES\
-│   ├── Genesis\
-│   └── ... (one folder per system)
-├── Save States\ .............. Your saved games
-├── Screenshots\ .............. Game screenshots
-├── Configs\ .................. Configuration files
-├── Launcher\ ................. Game launcher UI
-└── Tools\ .................... Utility scripts
+|-- SETUP.bat / setup.sh ....... First-time setup
+|-- LAUNCH.bat / launch.sh ..... Start gaming!
+|-- Emulators\ ................. RetroArch emulator (auto-installed)
+|-- ROMs\ ...................... Your game collection (per-system folders)
+|-- Save States\ ............... Your saved games
+|-- Screenshots\ ............... Game screenshots
+|-- Backups\ ................... Backups from the update tool
+|-- Logs\ ...................... Setup/launcher/diagnose logs
+|-- Configs\ ................... Configuration files
+|-- Launcher\ .................. Game launcher
++-- Tools\ ...................... Utility scripts
 
 
-💡 TIPS & TRICKS
-═══════════════════════════════════════════════════════════════════════
-
-• Save often using F2 (quick save states)
-• Use Space to fast-forward through cutscenes
-• Press F8 to take screenshots
-• F1 opens RetroArch menu for advanced options
-• USB 3.0 dramatically improves loading times
-• Works great on TV boxes with HDMI output!
-
-
-⚖️ LEGAL NOTICE
-═══════════════════════════════════════════════════════════════════════
+LEGAL NOTICE
+=================================================================
 
 This suite includes only FREE, OPEN-SOURCE emulators.
 ROM files are NOT included.
 
 Legal ways to obtain ROMs:
-  ✓ Dump from your own cartridges/discs
-  ✓ Download public domain/homebrew games
-  ✓ Purchase from legitimate digital stores
-  ✗ DO NOT download copyrighted games you don't own
+  * Dump from your own cartridges/discs
+  * Download public domain/homebrew games
+  * Purchase from legitimate digital stores
+  * DO NOT download copyrighted games you don't own
 
 
-═══════════════════════════════════════════════════════════════════════
++=================================================================+
 
-Need more help? Check README.md for detailed documentation
+Need more help? Check README.md and TROUBLESHOOTING.md
 
-Enjoy your portable retro gaming experience! 🎮✨
-
-═══════════════════════════════════════════════════════════════════════
+Enjoy your portable retro gaming experience!
++=================================================================+

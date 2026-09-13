@@ -1,0 +1,3 @@
+# Launcher dependencies (installed automatically by SETUP / LAUNCH).
+# pygame-ce is the maintained fork of pygame and a drop-in replacement.
+pygame-ce>=2.4.0
