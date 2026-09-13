@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+
+# RetroArch binaries / downloaded content (recreated by SETUP)
+Emulators/
+ROMs/
+Save States/
+Screenshots/
+Backups/
+Logs/
+
+# OS junk
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Logs
+*.log
+
+# Per-user launcher state (favorites, recently played)
+Configs/favorites.json
+Configs/recent.json

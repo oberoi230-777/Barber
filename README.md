@@ -1,154 +1,159 @@
-# 🎮 Portable Retro Gaming Suite
+# 🎮 Portable Retro Gaming Suite v2.0
 
-A complete portable retro gaming system that runs from USB drive on any Windows PC or TV box!
+A complete portable retro gaming system that runs from a USB drive on any
+Windows PC, TV box — and now Linux/macOS too!
 
 ## ✨ Features
 
-- 🕹️ **800+ Games Support** - Multiple emulators for various retro systems
-- 🎯 **Plug & Play** - No installation required, runs directly from USB
-- 🎮 **Controller Support** - Xbox, PlayStation, USB/Wireless joysticks
-- 📺 **4K Display Support** - Optimized UI for modern displays
-- 🚀 **Easy Setup** - Automated scripts download everything you need
-- 💾 **Portable** - Take your games anywhere
+- 🕹️ **15 Systems** — NES, SNES, N64, Game Boy, GBA, NDS, Genesis, Master
+  System, Game Gear, PlayStation, Arcade, Neo Geo, Atari 2600, Dreamcast, PSP
+- 🎯 **Plug & Play** — no installation required, runs directly from USB
+- 🤖 **Super automated** — one-command unattended setup installs Python,
+  RetroArch, all 13 cores, configs, and sample games
+- 🩺 **Self-healing** — `diagnose` tool finds and auto-repairs problems
+- 🎮 **Controller support** — Xbox, PlayStation, Switch Pro, 8BitDo, XInput
+- 📺 **4K-ready UI** — auto-scales, fullscreen toggle, type-to-search,
+  favorites, contextual help
+- ⌨️ **Text-mode fallback** — the launcher works even with no display/pygame
+- 🐧 **Cross-platform** — Windows (`SETUP.bat`) + Linux/macOS (`setup.sh`)
+- 💾 **Portable** — take your games anywhere; drive letters don't matter
 
-## 🎯 Supported Systems
+## 🚀 Quick Start (Windows)
 
-- Nintendo: NES, SNES, N64, Game Boy, GBA, DS
-- Sega: Genesis/Mega Drive, Master System, Game Gear, Dreamcast
-- Sony: PlayStation 1
-- Arcade: MAME, Neo Geo, Capcom Play System
-- And many more!
-
-## 🚀 Quick Start
-
-### Step 1: Initial Setup (First Time Only)
+### Step 1: Initial Setup (first time only)
 
 1. Copy this entire folder to your USB drive
-2. Run `SETUP.bat` as Administrator
-3. Wait for emulators and initial ROMs to download
-4. Done! Your gaming system is ready
+2. Run `SETUP.bat` (right-click → *Run as administrator* recommended)
+3. Answer the prompts — or run zero-click setup:
+   ```
+   SETUP.bat -Unattended -IncludeSampleRoms
+   ```
+   This auto-installs Python (via winget), RetroArch, all cores, and free
+   sample games with no questions asked.
 
 ### Step 2: Launch Games
 
 1. Run `LAUNCH.bat` from your USB drive
-2. Select a system and game
+2. Select a system and game (type to search, F5 = favorite)
 3. Play!
 
-## 🎮 Controller Setup
+## 🐧 Quick Start (Linux / macOS)
 
-### Supported Controllers
-- ✅ Xbox One/Series controllers (Wired/Wireless)
-- ✅ PlayStation 4/5 controllers (DS4Windows included)
-- ✅ Generic USB controllers
-- ✅ Wireless dongles
-- ✅ Keyboard (fallback)
+```bash
+./setup.sh            # interactive (installs deps, RetroArch, cores)
+./setup.sh --yes      # unattended
+./launch.sh           # play!
+./launch.sh --text    # terminal UI (great for SSH / handhelds)
+```
 
-### Default Controls
-- **Arrow Keys/D-Pad**: Navigate
-- **Enter/A Button**: Select
-- **ESC/B Button**: Back
-- **F11**: Toggle Fullscreen
-- **Alt+F4**: Exit emulator
+## 🎮 Controls
+
+### In the Launcher
+
+| Input | Action |
+|---|---|
+| Up/Down, D-Pad, Left stick | Navigate |
+| Enter / A button | Select / Launch |
+| ESC / B button | Back / Exit |
+| Type letters | Live search filter |
+| F5 / Y button | Toggle favorite (★) |
+| F6 / X button | Show favorites only |
+| R (systems view) / Start | Rescan ROM library |
+| F1 | Help screen |
+| F11 | Toggle fullscreen |
+
+### In Game (RetroArch defaults)
+
+- **F1**: RetroArch menu · **F2**: quick save · **F4**: quick load
+- **F8**: screenshot · **Hold Space**: fast forward · **ESC**: quit to launcher
 
 ## 📁 Folder Structure
 
 ```
 RetroGaming/
-├── SETUP.bat              # First-time setup script
-├── LAUNCH.bat             # Launch the game system
-├── Emulators/             # Portable emulators (auto-downloaded)
-├── ROMs/                  # Your game collection
-│   ├── NES/
-│   ├── SNES/
-│   ├── Genesis/
-│   └── ... (organized by system)
-├── Configs/               # Emulator configurations
-├── Launcher/              # Game launcher UI
-└── Tools/                 # ROM management tools
+├── SETUP.bat / setup.sh      # First-time setup (Windows / Linux-macOS)
+├── LAUNCH.bat / launch.sh    # Launch the game system
+├── version.json              # Suite version + pinned RetroArch stable
+├── Emulators/RetroArch/      # Portable RetroArch (auto-downloaded)
+├── ROMs/                     # Your game collection (one folder per system)
+├── Save States/              # Saves + save states (auto-configured)
+├── Screenshots/              # Screenshots (auto-configured)
+├── Backups/                  # Backups from the update tool
+├── Logs/                     # Setup/launcher/diagnose logs
+├── Configs/                  # Master configs (systems, cores, controllers)
+├── Launcher/                 # Game launcher (Python + pygame)
+└── Tools/                    # ROM + maintenance utilities
+```
+
+## 🛠️ Tools
+
+| Tool | What it does |
+|---|---|
+| `Tools/diagnose.bat` | **Start here for any problem.** Health check + one-click auto-repair (`-Fix`), JSON output (`-Json`) |
+| `Tools/download-roms.bat` | Download free legal homebrew (`-System All`, `-Overwrite`, `-ListOnly`) |
+| `Tools/organize-roms.bat` | Sort a messy folder into `ROMs/<system>/` (reads `systems.json`, handles cue/gdi companions, `-DryRun` preview, `-MoveFiles`) |
+| `Tools/test-controller.bat` | Visual gamepad tester (`-TextOnly` for terminals, R = rumble test) |
+| `Tools/update-system.bat` | Update cores / reinstall RetroArch (**keeps** cores, BIOS, saves) / backups (`-Action All -NonInteractive` for cron-safe runs) |
+
+All `.bat` launchers forward arguments to their `.ps1` script.
+
+### Launcher CLI (automation-friendly)
+
+```
+python Launcher/launcher.py --check            # health check (exit 0 = ready)
+python Launcher/launcher.py --scan             # library summary
+python Launcher/launcher.py --launch NES/Zelda # launch directly (name or index)
+python Launcher/launcher.py --text             # terminal UI
+python Launcher/launcher.py --self-test        # built-in self tests (used by CI)
 ```
 
 ## 📥 Adding More Games
 
-### Method 1: Automatic Download (Legal ROMs)
-```powershell
-.\Tools\download-roms.bat
-```
+**Method 1 — automatic (legal homebrew):** run `Tools/download-roms.bat`,
+pick a system (or All). Sources are verified + auto-discovered at runtime.
 
-### Method 2: Manual Addition
-1. Copy ROM files to appropriate folder in `ROMs/`
-2. Launch system - games auto-detected
+**Method 2 — manual:** copy ROM files into the matching `ROMs/<system>/`
+folder (zipped ROMs work for cartridge systems). The launcher picks them up
+on the next scan (press **R**).
+
+**Method 3 — organize a dump:** point `Tools/organize-roms.bat` at any messy
+folder and it files everything into the right system folders.
+
+## 📋 BIOS Files (some systems only)
+
+| System | File(s) | Location |
+|---|---|---|
+| PlayStation | `scph1001.bin` | `Emulators/RetroArch/system/` |
+| Dreamcast | `dc_boot.bin`, `dc_flash.bin` | `Emulators/RetroArch/system/` |
+| Nintendo DS | `bios7.bin`, `bios9.bin`, `firmware.bin` | `Emulators/RetroArch/system/` |
+| Neo Geo | `neogeo.zip` (keep zipped!) | `Emulators/RetroArch/system/` |
+| GBA | `gba_bios.bin` (optional) | `Emulators/RetroArch/system/` |
+
+Run `Tools/diagnose.bat` to see exactly which ones you're missing.
+You must own the original hardware to legally use BIOS files.
 
 ## 🔧 Troubleshooting
 
-### Controller Not Working
-1. Connect controller before launching
-2. Check Windows Game Controller settings
-3. Run `Tools\test-controller.bat`
+**First step for ANY problem:** run `Tools/diagnose.bat` — it detects the
+issue and usually fixes it with one keypress. Logs land in `Logs/`.
 
-### Game Won't Load
-- Verify ROM file is in correct folder
-- Check file extension matches system
-- Some games require BIOS files (see BIOS section)
-
-### Display Issues
-- Press F11 for fullscreen
-- Right-click launcher → Display Settings
-- Adjust scaling in Windows display settings
-
-## 📋 BIOS Files (Required for some systems)
-
-Some systems require BIOS files for legal emulation:
-- PlayStation 1: `scph1001.bin`
-- Sega Dreamcast: `dc_boot.bin`, `dc_flash.bin`
-
-Place BIOS files in: `Emulators/RetroArch/system/`
-
-**Note**: You must own the original hardware to legally use BIOS files.
+See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for the full guide and
+[QUICK-START.txt](QUICK-START.txt) for a printable cheat sheet.
 
 ## ⚖️ Legal Notice
 
 This suite includes only free, open-source emulators. ROM files are NOT included.
 
-**Legal Ways to Obtain ROMs:**
+**Legal ways to obtain ROMs:**
 - ✅ Dump from your own cartridges/discs
 - ✅ Public domain/homebrew games
-- ✅ Legally distributed ROMs (archive.org)
+- ✅ Legally distributed ROMs (archive.org, itch.io)
 - ❌ Do NOT download copyrighted games you don't own
-
-## 🛠️ Advanced Configuration
-
-### Customize Emulator Settings
-Edit files in `Configs/` folder to adjust performance, video filters, etc.
-
-### Add Custom Emulators
-1. Copy portable emulator to `Emulators/`
-2. Add configuration to `Configs/systems.json`
-
-## 🎯 Performance Tips
-
-1. **USB Drive**: Use USB 3.0+ for best performance
-2. **4K Displays**: Enable GPU scaling in configs
-3. **Wireless Controllers**: Reduce input lag in Bluetooth settings
-4. **Shaders**: Disable for older PCs, enable for CRT effects
-
-## 💡 Tips & Tricks
-
-- Press **F1** in RetroArch for quick menu
-- Save states: **F2** (save), **F4** (load)
-- Fast forward: **Hold Space**
-- Screenshot: **F8**
-
-## 🆘 Support & Updates
-
-Check `Tools\update-system.bat` for updates to emulators and launcher.
 
 ## 📜 Credits
 
-Built with:
-- RetroArch (libretro team)
-- Various standalone emulators
-- Python & Pygame for launcher
-- Community ROM databases
+Built with RetroArch (libretro team), libretro cores, Python & pygame-ce.
+See [CHANGELOG.md](CHANGELOG.md) for what's new in v2.0.
 
 ---
 

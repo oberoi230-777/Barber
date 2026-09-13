@@ -2,99 +2,126 @@
   {
     "name": "Nintendo Entertainment System",
     "folder": "NES",
-    "extensions": ["nes", "unf", "unif"],
+    "extensions": ["nes", "unf", "unif", "zip", "7z"],
+    "core": "fceumm",
     "emulator": "retroarch -L fceumm",
-    "icon": "🎮"
+    "icon": "NES"
   },
   {
     "name": "Super Nintendo",
     "folder": "SNES",
-    "extensions": ["smc", "sfc", "fig", "swc"],
+    "extensions": ["smc", "sfc", "fig", "swc", "bs", "zip", "7z"],
+    "core": "snes9x",
     "emulator": "retroarch -L snes9x",
-    "icon": "🎮"
+    "icon": "SNES"
   },
   {
     "name": "Nintendo 64",
     "folder": "N64",
-    "extensions": ["n64", "z64", "v64"],
-    "emulator": "retroarch -L mupen64plus",
-    "icon": "🎮"
+    "extensions": ["n64", "z64", "v64", "zip", "7z"],
+    "core": "mupen64plus_next",
+    "emulator": "retroarch -L mupen64plus_next",
+    "icon": "N64"
   },
   {
     "name": "Game Boy / Game Boy Color",
     "folder": "GameBoy",
-    "extensions": ["gb", "gbc"],
+    "extensions": ["gb", "gbc", "zip", "7z"],
+    "core": "gambatte",
     "emulator": "retroarch -L gambatte",
-    "icon": "🎮"
+    "icon": "GB"
   },
   {
     "name": "Game Boy Advance",
     "folder": "GBA",
-    "extensions": ["gba"],
+    "extensions": ["gba", "zip", "7z"],
+    "core": "mgba",
     "emulator": "retroarch -L mgba",
-    "icon": "🎮"
+    "icon": "GBA",
+    "bios": ["gba_bios.bin"]
+  },
+  {
+    "name": "Nintendo DS",
+    "folder": "NDS",
+    "extensions": ["nds", "zip", "7z"],
+    "core": "desmume",
+    "emulator": "retroarch -L desmume",
+    "icon": "NDS",
+    "bios": ["bios7.bin", "bios9.bin", "firmware.bin"]
   },
   {
     "name": "Sega Genesis / Mega Drive",
     "folder": "Genesis",
-    "extensions": ["md", "bin", "gen", "smd"],
+    "extensions": ["md", "bin", "gen", "smd", "32x", "zip", "7z"],
+    "core": "genesis_plus_gx",
     "emulator": "retroarch -L genesis_plus_gx",
-    "icon": "🎮"
+    "icon": "GEN"
   },
   {
     "name": "Sega Master System",
     "folder": "MasterSystem",
-    "extensions": ["sms"],
+    "extensions": ["sms", "sg", "zip", "7z"],
+    "core": "genesis_plus_gx",
     "emulator": "retroarch -L genesis_plus_gx",
-    "icon": "🎮"
+    "icon": "SMS"
   },
   {
     "name": "Sega Game Gear",
     "folder": "GameGear",
-    "extensions": ["gg"],
+    "extensions": ["gg", "zip", "7z"],
+    "core": "genesis_plus_gx",
     "emulator": "retroarch -L genesis_plus_gx",
-    "icon": "🎮"
+    "icon": "GG"
   },
   {
     "name": "PlayStation",
     "folder": "PlayStation",
-    "extensions": ["cue", "bin", "chd", "pbp"],
+    "extensions": ["cue", "m3u", "chd", "pbp", "iso", "bin"],
+    "core": "pcsx_rearmed",
     "emulator": "retroarch -L pcsx_rearmed",
-    "icon": "🎮"
+    "icon": "PS1",
+    "bios": ["scph1001.bin"]
   },
   {
     "name": "Arcade (MAME)",
     "folder": "Arcade",
-    "extensions": ["zip"],
+    "extensions": ["zip", "7z"],
+    "core": "mame2003_plus",
     "emulator": "retroarch -L mame2003_plus",
-    "icon": "🕹️"
+    "icon": "ARC"
   },
   {
     "name": "Neo Geo",
     "folder": "NeoGeo",
-    "extensions": ["zip"],
+    "extensions": ["zip", "7z"],
+    "core": "fbneo",
     "emulator": "retroarch -L fbneo",
-    "icon": "🕹️"
+    "icon": "NEO",
+    "bios": ["neogeo.zip"]
   },
   {
     "name": "Atari 2600",
     "folder": "Atari2600",
-    "extensions": ["a26", "bin"],
+    "extensions": ["a26", "bin", "zip", "7z"],
+    "core": "stella",
     "emulator": "retroarch -L stella",
-    "icon": "🕹️"
+    "icon": "A26"
   },
   {
     "name": "Sega Dreamcast",
     "folder": "Dreamcast",
-    "extensions": ["cdi", "gdi", "chd"],
+    "extensions": ["cdi", "gdi", "chd", "m3u"],
+    "core": "flycast",
     "emulator": "retroarch -L flycast",
-    "icon": "🎮"
+    "icon": "DC",
+    "bios": ["dc_boot.bin", "dc_flash.bin"]
   },
   {
     "name": "PlayStation Portable",
     "folder": "PSP",
-    "extensions": ["iso", "cso", "pbp"],
+    "extensions": ["iso", "cso", "pbp", "chd"],
+    "core": "ppsspp",
     "emulator": "retroarch -L ppsspp",
-    "icon": "🎮"
+    "icon": "PSP"
   }
 ]

@@ -1,6 +1,16 @@
-# 🔧 Troubleshooting Guide
+# 🔧 Troubleshooting Guide (v2.0)
 
-Common issues and solutions for the Portable Retro Gaming Suite
+> **Start here for EVERY problem:** run `Tools\diagnose.bat` (Windows) and
+> accept the automatic repair. It detects missing Python/pygame, RetroArch,
+> cores, configs, ROMs, and BIOS files — and usually fixes them with one
+> keypress. Logs are saved in `Logs\`.
+
+You can also run the launcher's own checks any time:
+
+```
+LAUNCH.bat --check        # health check (exit code 0 = ready to play)
+LAUNCH.bat --self-test    # deep self-test of scanner/configs
+```
 
 ---
 
@@ -10,13 +20,17 @@ Common issues and solutions for the Portable Retro Gaming Suite
 
 **Problem:** "Python not found" error when running LAUNCH.bat
 
-**Solutions:**
+**Automatic fix:** run `SETUP.bat` — it offers to install Python via winget.
+
+**Manual fix:**
+
 1. Download Python from [python.org/downloads](https://www.python.org/downloads/)
 2. During installation, **CHECK** "Add Python to PATH"
 3. Restart your computer
 4. Run SETUP.bat again
 
 **Verify Python is installed:**
+
 ```powershell
 python --version
 ```
@@ -25,21 +39,46 @@ python --version
 
 **Problem:** pygame fails to install during setup
 
-**Solutions:**
+**Automatic fixes (try in order):**
+
+1. Run `Tools\diagnose.bat` and accept the repair
+2. Run `Tools\update-system.bat`, option 3 (Update Python dependencies)
+
+**Manual fix:**
+
 1. Open Command Prompt as Administrator
 2. Run: `python -m pip install --upgrade pip`
-3. Run: `python -m pip install pygame`
-4. If still fails, try: `python -m pip install pygame --user`
+3. Run: `python -m pip install pygame-ce`
+4. If still fails, the launcher falls back to `--text` mode automatically —
+   you can play without graphics via `LAUNCH.bat --text`
 
 ### RetroArch Download Fails
 
 **Problem:** RetroArch fails to download or extract
 
+SETUP retries each download 3× and tries multiple mirrors (latest stable
+auto-detected, pinned stable, nightly fallback). If all fail:
+
+1. Check your internet (`diagnose.bat` tests connectivity)
+2. Check free space (needs ~1–2 GB) and that the USB drive isn't write-locked
+3. Check the log in `Logs\setup-*.log` for the exact failed URL
+
 **Manual Solution:**
+
 1. Download RetroArch manually: [retroarch.com](https://www.retroarch.com/?page=platforms)
-2. Choose "Windows 7/8/10/11 (64-bit)"
-3. Extract to: `F:\RetroGaming\Emulators\RetroArch\`
-4. Run SETUP.bat again (it will skip download)
+2. Choose "Windows 7/8/10/11 (64-bit)" → download the `.7z`
+3. Extract so that `retroarch.exe` lands in `<USB>\Emulators\RetroArch\`
+   (whatever your drive letter is — the scripts resolve it automatically)
+4. Run SETUP.bat again (it will skip the download and install cores/configs)
+
+### "Could not extract .7z"
+
+The setup extracts `.7z` via 7-Zip → winget auto-install → py7zr → tar.
+If all fail, install 7-Zip manually and re-run:
+
+```powershell
+winget install 7zip.7zip
+```
 
 ---
 
@@ -51,67 +90,42 @@ python --version
 
 **Solutions:**
 
-1. **Connect Before Launching**
-   - Plug in controller BEFORE running LAUNCH.bat
-   - For wireless: pair through Windows Bluetooth settings first
-
-2. **Test Controller**
+1. **Connect BEFORE launching** — plug in / pair first, then run LAUNCH.bat
+2. **Test the controller:**
    ```
    Run: Tools\test-controller.bat
    ```
-   - This shows if Windows detects your controller
-   - You should see button presses and analog stick movement
-
-3. **Windows Game Controller Settings**
-   - Press `Win + R`, type `joy.cpl`, press Enter
-   - Your controller should appear in the list
-   - Click "Properties" to test buttons
-
-4. **Check USB Port**
-   - Try a different USB port (preferably USB 3.0)
-   - For wireless controllers, ensure receiver is plugged in
+   You should see values move. In a terminal/SSH session use:
+   ```
+   Tools\test-controller.bat -TextOnly -Seconds 15
+   ```
+   Press **R** in the window for a rumble test.
+3. **Windows Game Controller settings** — press `Win + R`, type `joy.cpl`,
+   press Enter. Your pad MUST appear here; if not, it's a Windows/driver
+   issue, not a RetroArch issue.
+4. Try a different USB port (USB 3.0 preferred). For wireless, re-pair in
+   Windows Bluetooth settings.
 
 ### PS4/PS5 Controller Issues
 
-**Problem:** PlayStation controller doesn't work
-
-**Solutions:**
-
-1. **Use USB Cable First**
-   - Connect with USB cable (not Bluetooth initially)
-   - This works more reliably
-
-2. **Install DS4Windows** (for wireless)
-   - Download from [ds4windows.com](https://ds4windows.com)
-   - Extract and run DS4Windows.exe
-   - Follow setup wizard
-   - Keep DS4Windows running in background
-
-3. **Bluetooth Pairing**
-   - Hold PS + Share buttons until light flashes
-   - Add Bluetooth device in Windows
-   - Select "Wireless Controller"
+1. **Use USB first** — Bluetooth via plain DirectInput is flaky. USB "just works".
+2. **For wireless**, install [DS4Windows](https://ds4windows.com), keep it
+   running — your pad then appears as XInput (covered by our XInput profile).
+3. **Bluetooth pairing:** hold PS + Share until the light flashes, then add
+   the "Wireless Controller" in Windows Bluetooth settings.
 
 ### Xbox Controller Issues
 
-**Problem:** Xbox controller not responding
+1. **Xbox One/Series:** USB-C cable always works. Wireless needs the Xbox
+   Wireless Adapter for Windows (or Bluetooth on newer models).
+2. **Xbox 360 wireless** needs the 360 wireless receiver + driver.
+3. Update firmware via the Xbox Accessories app (Microsoft Store).
 
-**Solutions:**
+### Switch Pro / 8BitDo
 
-1. **Xbox One/Series Controllers**
-   - Wired: Use USB-C cable
-   - Wireless: Requires Xbox Wireless Adapter for Windows
-   - Alternative: Use USB cable
-
-2. **Xbox 360 Controllers**
-   - May need Xbox 360 controller driver
-   - Download from Microsoft website
-   - Wireless requires Xbox 360 wireless receiver
-
-3. **Update Controller Firmware**
-   - Open Xbox Accessories app from Microsoft Store
-   - Connect controller
-   - Update if available
+- Pair in Windows Bluetooth settings first (8BitDo: use **X mode** for
+  best compatibility — covered by our XInput profile).
+- Test with `Tools\test-controller.bat`.
 
 ---
 
@@ -123,69 +137,44 @@ python --version
 
 **Solutions:**
 
-1. **Add ROM Files**
-   - Copy ROM files to correct folders:
-     - NES games → `ROMs\NES\`
-     - SNES games → `ROMs\SNES\`
-     - etc.
-
-2. **Download Sample ROMs**
-   ```
-   Run: Tools\download-roms.bat
-   ```
-
-3. **Check File Extensions**
-   - Verify ROM files have correct extensions
-   - Examples: `.nes`, `.smc`, `.md`, `.gba`
-   - See README.md for full list
-
-4. **Restart Launcher**
-   - Close and reopen LAUNCH.bat
-   - Launcher scans for games at startup
+1. **Add ROM files** to the right folders (`ROMs\NES\`, `ROMs\SNES\`, …).
+   Zipped ROMs work for cartridge systems.
+2. **Download samples:** run `Tools\download-roms.bat` → sample pack.
+3. **Rescan:** press **R** in the launcher (systems view) — no restart needed.
+4. **Check extensions:** `organize-roms` files anything it recognizes; run
+   `Tools\organize-roms.bat -StatsOnly` to see what was detected.
 
 ### Game Won't Load
 
-**Problem:** Selected game doesn't start or shows error
+**Problem:** Selected game doesn't start or shows an error
 
-**Solutions:**
+**The launcher now tells you why** (on-screen toast + `Logs\launcher.log`).
+Common causes:
 
-1. **Check BIOS Files** (PlayStation, Dreamcast, Neo Geo)
-   - See `Configs\BIOS-INFO.txt` for required files
-   - Place BIOS in: `Emulators\RetroArch\system\`
-
-2. **Verify ROM File**
-   - File might be corrupted
-   - Try different ROM dump
-   - Check file size (0 bytes = bad file)
-
-3. **RetroArch Core Missing**
-   - Run SETUP.bat again to download cores
-   - Or download from RetroArch menu (F1 → Online Updater)
-
-4. **Check RetroArch Logs**
-   - Location: `Emulators\RetroArch\logs\`
-   - Look for error messages
+1. **Missing core** — run `Tools\update-system.bat` → option 1, or
+   `Tools\diagnose.bat` → repair.
+2. **Missing BIOS** (PlayStation, Dreamcast, NDS, Neo Geo) — see
+   `Configs\BIOS-INFO.txt`; `diagnose.bat` lists exactly what's missing.
+3. **Corrupt ROM** — 0-byte files and bad dumps fail; try another dump.
+4. **Check logs:** `Emulators\RetroArch\logs\` and `Logs\launcher.log`.
 
 ### Black Screen When Loading Game
 
-**Problem:** Game loads but screen stays black
+1. Wait 10–15 seconds (PS1/N64 cores initialize slowly).
+2. Missing BIOS is the #1 cause — check `diagnose.bat`.
+3. Press F1 → Information → Core Information to verify the right core loaded.
+4. Try another video driver: F1 → Settings → Drivers → Video
+   (d3d11 → gl → vulkan).
 
-**Solutions:**
+### "Core not found for …"
 
-1. **Wait 10-15 Seconds**
-   - Some games take time to initialize
-   - Especially PS1 and N64 games
+Your `systems.json` names a core that isn't installed (v1.x had an N64
+mismatch: `mupen64plus` vs `mupen64plus_next`). v2.0 ships the fixed config;
+if you customized it, run the self-test to validate:
 
-2. **BIOS Missing**
-   - Check if system requires BIOS (see BIOS-INFO.txt)
-
-3. **Wrong Core**
-   - Press F1 → Information → Core Information
-   - Verify correct core is loaded
-
-4. **Video Driver Issue**
-   - Press F1 → Settings → Drivers → Video
-   - Try different driver (d3d11, gl, vulkan)
+```
+LAUNCH.bat --self-test
+```
 
 ---
 
@@ -193,52 +182,22 @@ python --version
 
 ### Launcher Window Too Small/Large
 
-**Problem:** UI doesn't fit screen properly
-
-**Solutions:**
-
-1. **Change Display Scaling**
-   - Windows Settings → Display → Scale
-   - Try 100% or 125% scaling
-
-2. **Press F11**
-   - Toggles fullscreen mode
-
-3. **Adjust Resolution**
-   - The launcher auto-detects display size
-   - For 4K: Should open fullscreen
-   - For 1080p: Opens windowed
+- Press **F11** to toggle fullscreen.
+- The launcher auto-detects 4K and starts fullscreen there.
+- Force a mode: `LAUNCH.bat --fullscreen` / `LAUNCH.bat --windowed`.
+- Windows Settings → Display → Scale 100–125% works best.
 
 ### Game Has Wrong Aspect Ratio
 
-**Problem:** Game looks stretched or squashed
-
-**Solutions:**
-
-1. **In-Game Menu** (Press F1)
-   - Settings → Video
-   - Aspect Ratio → "Core Provided" or "4:3"
-
-2. **Integer Scaling**
-   - Settings → Video → Integer Scale → ON
-   - Gives pixel-perfect scaling
-
-3. **Fullscreen Mode**
-   - Settings → Video → Fullscreen → ON
+1. In-game menu (F1) → Settings → Video → Aspect Ratio → "Core Provided".
+2. Integer Scale → ON gives pixel-perfect scaling.
+3. Our default config already sets core-provided aspect; if you changed it,
+   re-run SETUP (your old config is backed up as `retroarch.cfg.previous`).
 
 ### Screen Tearing
 
-**Problem:** Horizontal lines during gameplay
-
-**Solutions:**
-
-1. **Enable VSync**
-   - Press F1 → Settings → Video
-   - VSync → ON
-
-2. **Check Monitor Refresh Rate**
-   - Windows Display Settings
-   - Set to highest available (60Hz minimum)
+1. Enable VSync: F1 → Settings → Video → VSync → ON (default in our config).
+2. Set your monitor to its highest refresh rate (60 Hz minimum).
 
 ---
 
@@ -246,50 +205,18 @@ python --version
 
 ### Slow/Laggy Gameplay
 
-**Problem:** Games run slow or choppy
-
-**Solutions:**
-
-1. **Use USB 3.0 Port**
-   - Blue USB ports = USB 3.0 (faster)
-   - Black USB ports = USB 2.0 (slower)
-   - USB 3.0 is 10x faster!
-
-2. **Close Other Programs**
-   - Chrome, Discord, etc. use resources
-   - Close unnecessary applications
-
-3. **Disable Shaders**
-   - Press F1 → Quick Menu
-   - Shaders → Remove
-
-4. **Reduce Internal Resolution** (N64, PS1, PSP)
-   - Press F1 → Quick Menu → Core Options
-   - Look for "Internal Resolution"
-   - Set to 1x or 2x
-
-5. **Check System Requirements**
-   - Older PCs may struggle with N64, PSP, Dreamcast
-   - Try simpler systems (NES, SNES, Genesis)
+1. **Use a blue USB 3.0 port** — USB 2.0 is ~10× slower at loading.
+2. Close Chrome/Discord/etc.
+3. Disable shaders: F1 → Quick Menu → Shaders → Remove.
+4. Lower internal resolution (N64/PS1/PSP/Dreamcast): F1 → Quick Menu →
+   Core Options → Internal Resolution → 1x.
+5. Older PCs: stick to NES/SNES/Genesis/GBA; N64/PSP/Dreamcast need muscle.
 
 ### Input Lag
 
-**Problem:** Controller feels delayed
-
-**Solutions:**
-
-1. **Wired Connection**
-   - Use USB cable instead of Bluetooth
-   - Reduces latency
-
-2. **Run-Ahead Feature**
-   - Press F1 → Settings → Latency
-   - Run-Ahead → Enable
-   - Frames → 1 or 2
-
-3. **Reduce Audio Latency**
-   - Press F1 → Settings → Audio
-   - Audio Latency → 32 or 64ms
+1. Prefer USB cable over Bluetooth.
+2. F1 → Settings → Latency → Run-Ahead → Enable, 1–2 frames.
+3. F1 → Settings → Audio → Audio Latency → 32–64 ms.
 
 ---
 
@@ -297,42 +224,32 @@ python --version
 
 ### Can't Find Save Files
 
-**Problem:** Where are my game saves?
+Saves live in **`Save States\`** (configured automatically):
 
-**Location:** `Save States\` folder
+- **Save states:** F2 quick-save / F4 quick-load in game (all systems).
+- **In-game saves:** use the game's own save; files land in `Save States\`.
+- **Backup:** run `Tools\update-system.bat` → option 5 (backs up configs,
+  saves, screenshots, launcher, and BIOS).
 
-**Solutions:**
+### USB Drive Doesn't Work on Another PC
 
-1. **Save States** (recommended)
-   - Press F2 during game to quick save
-   - Press F4 to quick load
-   - Works with all games
+1. **Drive letter changed** — normal; all scripts/launchers resolve paths
+   relative to themselves. Just run LAUNCH.bat from the new letter.
+2. **Python missing on the new PC** — run SETUP.bat there (it can
+   auto-install Python) or install Python with "Add to PATH".
+3. **Antivirus blocking** — add an exclusion for your USB drive / the
+   `Emulators\RetroArch\` folder (see below).
 
-2. **In-Game Saves** (native)
-   - Save using game's own save feature
-   - Files saved to `Save States\` automatically
+### ROM Organizer Put Files in the Wrong System
 
-3. **Export Saves**
-   - Copy entire `Save States\` folder
-   - Backup to another location
-
-### USB Drive Not Working on Another PC
-
-**Problem:** System doesn't work when plugged into different computer
-
-**Solutions:**
-
-1. **Drive Letter Changed**
-   - Normal behavior - scripts handle this automatically
-   - Just run LAUNCH.bat from new drive letter
-
-2. **Python Not Installed on New PC**
-   - Install Python on that computer
-   - Or make Python portable (advanced)
-
-3. **Antivirus Blocking**
-   - Some antivirus software blocks USB executables
-   - Add exception for your USB drive
+- `.zip` is ambiguous (MAME vs Neo Geo vs zipped cartridge ROMs). Run once
+  per source folder with `-DefaultZipSystem`:
+  ```
+  Tools\organize-roms.bat -SourceFolder C:\NeoGeoDumps -DefaultZipSystem NeoGeo
+  ```
+- Orphan `.bin` files default to Genesis (tiny ≤64 KB ones go to Atari 2600);
+  if a `.bin` sits next to its `.cue`/`.gdi`, it follows the disc system.
+- Use `-DryRun` first to preview any batch.
 
 ---
 
@@ -340,33 +257,17 @@ python --version
 
 ### Antivirus Warns About Files
 
-**Problem:** Antivirus flags RetroArch or scripts
+Emulators and PowerShell scripts are frequent false positives. Files come
+from official sources (libretro buildbot, python.org, winget).
 
-**Reason:** Emulators and PowerShell scripts are sometimes flagged as false positives
-
-**Solutions:**
-
-1. **Verify Files Are Safe**
-   - All files from official sources
-   - RetroArch: libretro.com (open source)
-   - Scripts: Created by this tool
-
-2. **Add Exclusion**
-   - Add entire `RetroGaming\` folder to antivirus exclusions
-   - Or specifically: `Emulators\RetroArch\`
-
-3. **Disable Real-Time Scanning Temporarily**
-   - Only when running setup/games
-   - Re-enable after use
+1. Add the whole suite folder (or at least `Emulators\RetroArch\`) to your
+   antivirus exclusions.
+2. Only disable real-time scanning temporarily during setup/games.
 
 ### Windows SmartScreen Warning
 
-**Problem:** "Windows protected your PC" message
-
-**Solution:**
-1. Click "More info"
-2. Click "Run anyway"
-3. This appears for unsigned applications (normal)
+"Windows protected your PC" → More info → Run anyway. Normal for unsigned
+open-source apps.
 
 ---
 
@@ -374,105 +275,91 @@ python --version
 
 ### Sample ROM Download Fails
 
-**Problem:** download-roms.bat can't download games
-
-**Solutions:**
-
-1. **Check Internet Connection**
-   - Verify you're connected
-   - Try opening a website
-
-2. **Firewall Blocking**
-   - Temporarily disable firewall
-   - Or add exception for PowerShell
-
-3. **Manual Download**
-   - Visit archive.org directly
-   - Search for "homebrew [system name]"
-   - Download and place in ROM folders
+1. Check internet (open any website).
+2. The tool auto-discovers files via the archive.org API; if an item was
+   removed it falls back to live search, then prints a manual browse link.
+3. Preview without downloading: `Tools\download-roms.bat -System NES -ListOnly`.
+4. Manual fallback: search "<system> homebrew" on archive.org / itch.io,
+   drop files into `ROMs\<system>\`, press R in the launcher.
 
 ### Core Download Fails During Setup
 
-**Problem:** Emulator cores fail to download
+1. `Tools\update-system.bat` → option 1 retries just the cores.
+2. `Tools\diagnose.bat` → repair installs only the missing ones.
+3. Manual: run `Emulators\RetroArch\retroarch.exe` → Online Updater →
+   Core Downloader, or drop `.dll`s into `Emulators\RetroArch\cores\`.
 
-**Solutions:**
+---
 
-1. **Download from RetroArch**
-   - Run `Emulators\RetroArch\retroarch.exe`
-   - Online Updater → Core Downloader
-   - Select cores manually
+## 🐧 Linux / macOS Issues
 
-2. **Check Network**
-   - buildbot.libretro.com might be slow
-   - Try again later
+### `./setup.sh: Permission denied`
 
-3. **Manual Core Installation**
-   - Download from buildbot.libretro.com
-   - Extract `.dll` files to `Emulators\RetroArch\cores\`
+```bash
+chmod +x setup.sh launch.sh
+./setup.sh
+```
+
+### RetroArch Not Installed
+
+`setup.sh` tries apt/dnf/pacman/zypper/Homebrew. Alternatives:
+
+```bash
+flatpak install flathub org.libretro.RetroArch
+```
+
+then re-run `./setup.sh` (it detects `retroarch` on PATH and links it).
+
+### No Display / SSH Session
+
+The launcher detects headless Linux and drops to text mode automatically.
+Force it: `./launch.sh --text`.
+
+### Controllers on Linux
+
+- The setup uses `udev` joypad drivers. Add your user to the `input` group
+  if pads aren't detected: `sudo usermod -aG input $USER` (log out/in).
+- Test: `python3 Launcher/launcher.py --check` won't test pads; use the
+  RetroArch GUI (Settings → Input) or `jstest` from `joystick` package.
 
 ---
 
 ## 🆘 Still Having Issues?
 
-### General Debugging Steps
+### One-Click Reset Ladder (try in order)
 
-1. **Run SETUP.bat Again**
-   - Fixes most configuration issues
-   - Re-downloads missing components
-
-2. **Check README.md**
-   - Comprehensive documentation
-   - System requirements
-   - Supported formats
-
-3. **Reset Configuration**
-   - Delete: `Emulators\RetroArch\retroarch.cfg`
-   - Run SETUP.bat to recreate
-   - Warning: Resets all RetroArch settings
-
-4. **Clean Reinstall**
-   - Delete `Emulators\RetroArch\` folder
-   - Keep `ROMs\` and `Save States\`
-   - Run SETUP.bat
+1. `Tools\diagnose.bat` → accept auto-repair.
+2. `Tools\update-system.bat` → option 6 (update everything).
+3. Delete `Emulators\RetroArch\retroarch.cfg` → re-run SETUP.bat
+   (regenerates config; your saves/ROMs are untouched).
+4. Clean reinstall: delete `Emulators\RetroArch\` (keep `ROMs\` and
+   `Save States\`), re-run SETUP.bat.
 
 ### Log Files
 
-Check these locations for error details:
-
-- **Launcher Errors:** Run from command line to see output
+- **Launcher:** `Logs\launcher.log`
+- **Setup/diagnose:** `Logs\setup-*.log`, `Logs\diagnose-*.log`
+- **RetroArch:** `Emulators\RetroArch\logs\`
+- **Terminal output:** run the launcher manually to see everything:
   ```
   cd Launcher
-  python launcher.py
+  python launcher.py --check
   ```
 
-- **RetroArch Logs:** `Emulators\RetroArch\logs\`
+### Reporting Issues
 
-- **Setup Errors:** PowerShell shows errors during SETUP.bat
-
----
-
-## 📝 Reporting Issues
-
-If you need additional help:
-
-1. **What to Include:**
-   - Windows version
-   - Error message (exact text or screenshot)
-   - What you were trying to do
-   - Steps to reproduce
-
-2. **Useful Info:**
-   - Output of: `python --version`
-   - USB drive type (USB 2.0 / 3.0)
-   - Controller model
+Include: Windows version, the exact error (or screenshot), what you were
+doing, plus the outputs of `python --version` and `LAUNCH.bat --check`.
 
 ---
 
 **Most issues are solved by:**
+
+- ✅ Running `Tools\diagnose.bat` and accepting the repair
 - ✅ Running SETUP.bat as Administrator
-- ✅ Using USB 3.0 port
-- ✅ Installing Python correctly (with PATH)
-- ✅ Adding BIOS files for PS1/Dreamcast
-- ✅ Connecting controller before launching
+- ✅ Using a USB 3.0 port
+- ✅ Installing Python with "Add to PATH" (or letting SETUP do it)
+- ✅ Adding BIOS files for PS1/Dreamcast/NDS/Neo Geo
+- ✅ Connecting the controller before launching
 
 Happy Gaming! 🎮

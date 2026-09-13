@@ -1,0 +1,88 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  python:
+    name: Launcher tests (Python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pygame-ce pytest
+
+      - name: Validate JSON configs
+        run: |
+          python -m json.tool Configs/systems.json > /dev/null
+          python -m json.tool version.json > /dev/null
+
+      - name: Run pytest suite
+        run: python -m pytest tests/ -v
+
+      - name: Run launcher self-test
+        run: python Launcher/launcher.py --self-test
+
+      - name: Headless GUI smoke test
+        run: |
+          SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python -c "
+          import launcher
+          launcher._try_import_pygame()
+          pg = launcher.pygame
+          pg.init(); pg.display.init()
+          gui = launcher.GameLauncherGUI(fullscreen=False)
+          gui.draw_background(); gui.draw_header()
+          gui.draw_systems_view(); gui.draw_footer()
+          pg.display.flip()
+          gui.current_view = 'games'; gui.draw_games_view()
+          gui.current_view = 'help'; gui.draw_help_view()
+          pg.quit()
+          print('GUI smoke OK')
+          "
+        working-directory: Launcher
+
+      - name: Shell syntax check
+        run: bash -n setup.sh && bash -n launch.sh
+
+  powershell:
+    name: PowerShell analysis (Windows)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Syntax-check all scripts
+        shell: pwsh
+        run: |
+          $failed = $false
+          Get-ChildItem -Path . -Filter *.ps1 -Recurse | ForEach-Object {
+            $errors = $null
+            [void][System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$null, [ref]$errors)
+            if ($errors.Count -gt 0) {
+              $failed = $true
+              Write-Host "::error file=$($_.FullName)::PowerShell syntax errors found"
+              $errors | ForEach-Object { Write-Host $_.Message }
+            } else {
+              Write-Host "OK: $($_.FullName)"
+            }
+          }
+          if ($failed) { exit 1 }
+
+      - name: PSScriptAnalyzer (errors only)
+        shell: pwsh
+        run: |
+          Install-Module PSScriptAnalyzer -Force -Scope CurrentUser -ErrorAction Stop
+          $results = Invoke-ScriptAnalyzer -Path . -Recurse -Severity Error
+          $results | Format-Table -AutoSize | Out-String | Write-Host
+          if ($results) { exit 1 }
