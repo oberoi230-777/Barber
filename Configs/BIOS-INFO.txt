@@ -1,0 +1,152 @@
+╔═══════════════════════════════════════════════════════════════════════╗
+║                         BIOS FILES INFORMATION                        ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+Some emulators require BIOS files to work correctly. These are firmware files
+from the original consoles and must be obtained legally.
+
+LEGAL WAYS TO OBTAIN BIOS FILES:
+═════════════════════════════════════════════════════════════════════════
+
+1. Extract from your own console hardware (100% legal)
+2. Purchase from official sources
+3. Some are available as freeware/abandoned
+
+⚠️  DO NOT download BIOS files from ROM sites - this is copyright infringement!
+
+
+REQUIRED BIOS FILES BY SYSTEM:
+═════════════════════════════════════════════════════════════════════════
+
+📀 PLAYSTATION 1
+─────────────────
+Files needed:
+  • scph1001.bin (USA BIOS)
+  • scph5500.bin (Japan BIOS) - optional
+  • scph5502.bin (Europe BIOS) - optional
+
+Location: Emulators\RetroArch\system\
+
+Without BIOS: Some games may not work or have issues
+
+
+🎮 SEGA DREAMCAST
+─────────────────
+Files needed:
+  • dc_boot.bin (Dreamcast BIOS)
+  • dc_flash.bin (Dreamcast Flash)
+
+Location: Emulators\RetroArch\system\
+
+Without BIOS: Most games will not boot
+
+
+🎮 NINTENDO DS
+─────────────────
+Files needed:
+  • bios7.bin (ARM7 BIOS)
+  • bios9.bin (ARM9 BIOS)
+  • firmware.bin (NDS Firmware)
+
+Location: Emulators\RetroArch\system\
+
+Without BIOS: Emulator will use high-level emulation (less accurate)
+
+
+🕹️ NEO GEO / ARCADE
+─────────────────
+Files needed:
+  • neogeo.zip (Neo Geo BIOS)
+
+Location: Emulators\RetroArch\system\
+
+Without BIOS: Neo Geo games will not load
+
+
+🎮 GAME BOY ADVANCE
+─────────────────
+Files needed:
+  • gba_bios.bin (GBA BIOS) - optional
+
+Location: Emulators\RetroArch\system\
+
+Without BIOS: Will use built-in HLE (works fine for most games)
+
+
+OPTIONAL BIOS FILES:
+═════════════════════════════════════════════════════════════════════════
+
+These improve accuracy but are not required:
+
+🎮 SEGA CD / MEGA CD
+  • bios_CD_E.bin (Europe)
+  • bios_CD_U.bin (USA)
+  • bios_CD_J.bin (Japan)
+
+🎮 PC ENGINE CD
+  • syscard3.pce
+
+🎮 SEGA SATURN
+  • saturn_bios.bin
+
+
+HOW TO ADD BIOS FILES:
+═════════════════════════════════════════════════════════════════════════
+
+1. Obtain BIOS files legally
+2. Copy to: Emulators\RetroArch\system\
+3. Make sure filenames match exactly (case-sensitive on some systems)
+4. Restart launcher
+
+
+VERIFICATION:
+═════════════════════════════════════════════════════════════════════════
+
+To check if BIOS files are loaded:
+1. Launch a game that requires BIOS
+2. Press F1 to open RetroArch menu
+3. Go to: Information → Core Information
+4. Check "Firmware" section for status
+
+
+TROUBLESHOOTING:
+═════════════════════════════════════════════════════════════════════════
+
+❌ "BIOS file not found"
+   → Check filename matches exactly
+   → Verify file is in correct folder
+   → Some BIOS files must be lowercase
+
+❌ "Invalid BIOS file"
+   → File may be corrupted
+   → Check MD5 checksum online
+   → Try different version (USA/EUR/JAP)
+
+❌ Game doesn't load
+   → Verify BIOS is required for that system
+   → Check RetroArch logs in Emulators\RetroArch\logs\
+
+
+MD5 CHECKSUMS (for verification):
+═════════════════════════════════════════════════════════════════════════
+
+PlayStation BIOS:
+  scph1001.bin: 924e392ed05558ffdb115408c263dccf
+
+Dreamcast BIOS:
+  dc_boot.bin: e10c53c2f8b90bab96ead2d368858623
+  dc_flash.bin: 0a93f7940c455d6d0809
+
+Neo Geo BIOS:
+  neogeo.zip: (contains multiple files, check with MAME)
+
+Note: Use these to verify you have correct, non-corrupted files
+
+
+═════════════════════════════════════════════════════════════════════════
+
+For more information, visit:
+• RetroArch Documentation: https://docs.libretro.com/
+• System-specific BIOS requirements: Check per-core documentation
+
+═════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,100 @@
+[
+  {
+    "name": "Nintendo Entertainment System",
+    "folder": "NES",
+    "extensions": ["nes", "unf", "unif"],
+    "emulator": "retroarch -L fceumm",
+    "icon": "🎮"
+  },
+  {
+    "name": "Super Nintendo",
+    "folder": "SNES",
+    "extensions": ["smc", "sfc", "fig", "swc"],
+    "emulator": "retroarch -L snes9x",
+    "icon": "🎮"
+  },
+  {
+    "name": "Nintendo 64",
+    "folder": "N64",
+    "extensions": ["n64", "z64", "v64"],
+    "emulator": "retroarch -L mupen64plus",
+    "icon": "🎮"
+  },
+  {
+    "name": "Game Boy / Game Boy Color",
+    "folder": "GameBoy",
+    "extensions": ["gb", "gbc"],
+    "emulator": "retroarch -L gambatte",
+    "icon": "🎮"
+  },
+  {
+    "name": "Game Boy Advance",
+    "folder": "GBA",
+    "extensions": ["gba"],
+    "emulator": "retroarch -L mgba",
+    "icon": "🎮"
+  },
+  {
+    "name": "Sega Genesis / Mega Drive",
+    "folder": "Genesis",
+    "extensions": ["md", "bin", "gen", "smd"],
+    "emulator": "retroarch -L genesis_plus_gx",
+    "icon": "🎮"
+  },
+  {
+    "name": "Sega Master System",
+    "folder": "MasterSystem",
+    "extensions": ["sms"],
+    "emulator": "retroarch -L genesis_plus_gx",
+    "icon": "🎮"
+  },
+  {
+    "name": "Sega Game Gear",
+    "folder": "GameGear",
+    "extensions": ["gg"],
+    "emulator": "retroarch -L genesis_plus_gx",
+    "icon": "🎮"
+  },
+  {
+    "name": "PlayStation",
+    "folder": "PlayStation",
+    "extensions": ["cue", "bin", "chd", "pbp"],
+    "emulator": "retroarch -L pcsx_rearmed",
+    "icon": "🎮"
+  },
+  {
+    "name": "Arcade (MAME)",
+    "folder": "Arcade",
+    "extensions": ["zip"],
+    "emulator": "retroarch -L mame2003_plus",
+    "icon": "🕹️"
+  },
+  {
+    "name": "Neo Geo",
+    "folder": "NeoGeo",
+    "extensions": ["zip"],
+    "emulator": "retroarch -L fbneo",
+    "icon": "🕹️"
+  },
+  {
+    "name": "Atari 2600",
+    "folder": "Atari2600",
+    "extensions": ["a26", "bin"],
+    "emulator": "retroarch -L stella",
+    "icon": "🕹️"
+  },
+  {
+    "name": "Sega Dreamcast",
+    "folder": "Dreamcast",
+    "extensions": ["cdi", "gdi", "chd"],
+    "emulator": "retroarch -L flycast",
+    "icon": "🎮"
+  },
+  {
+    "name": "PlayStation Portable",
+    "folder": "PSP",
+    "extensions": ["iso", "cso", "pbp"],
+    "emulator": "retroarch -L ppsspp",
+    "icon": "🎮"
+  }
+]
