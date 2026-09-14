@@ -23,11 +23,39 @@ def systems():
 
 def test_systems_json_valid():
     data = json.loads((ROOT / "Configs" / "systems.json").read_text(encoding="utf-8"))
-    assert isinstance(data, list) and len(data) >= 10
+    assert isinstance(data, list) and len(data) >= 40
+    folders = set()
     for entry in data:
         assert entry["folder"], entry
+        assert entry["folder"] not in folders, f"duplicate folder {entry['folder']}"
+        folders.add(entry["folder"])
         assert entry["extensions"], entry
         assert entry.get("core") or entry.get("emulator"), entry
+        assert int(entry.get("players", 1) or 1) >= 1
+
+
+def test_free_games_catalog_valid():
+    path = ROOT / "Configs" / "free-games-catalog.json"
+    assert path.exists()
+    data = json.loads(path.read_text(encoding="utf-8"))
+    systems = data["systems"]
+    assert len(systems) >= 30
+    total_entries = sum(len(v.get("entries", [])) for v in systems.values())
+    assert total_entries >= 50
+    # Every catalog system should map to a real systems.json folder (or be intentional).
+    known = {e["folder"] for e in json.loads((ROOT / "Configs" / "systems.json").read_text(encoding="utf-8"))}
+    missing = [name for name in systems if name not in known]
+    assert missing == [], f"catalog systems missing from systems.json: {missing}"
+
+
+def test_multiplayer_systems_configured():
+    data = json.loads((ROOT / "Configs" / "systems.json").read_text(encoding="utf-8"))
+    multi = [e for e in data if int(e.get("players", 1) or 1) >= 2]
+    assert len(multi) >= 15
+    # Classic 2P systems must be present.
+    folders = {e["folder"] for e in multi}
+    for must in ("NES", "SNES", "Genesis", "Atari2600", "Arcade"):
+        assert must in folders
 
 
 def test_version_json_valid():
@@ -155,6 +183,44 @@ def test_tools_exist():
                  "download-roms.bat", "organize-roms.bat", "test-controller.bat",
                  "update-system.bat", "diagnose.bat"]:
         assert (ROOT / "Tools" / name).exists(), f"missing Tools/{name}"
+
+
+def test_dual_player_retroarch_bindings():
+    text = (ROOT / "Configs" / "retroarch.cfg").read_text(encoding="utf-8")
+    assert 'input_player1_joypad_index = "0"' in text
+    assert 'input_player2_joypad_index = "1"' in text
+    assert 'input_player3_joypad_index = "2"' in text
+    assert 'input_player4_joypad_index = "3"' in text
+    assert 'input_max_users = "8"' in text
+    # P2 has dedicated keyboard cluster (IJKL) so two humans can share one keyboard.
+    assert 'input_player2_up = "i"' in text
+    assert 'input_player2_left = "j"' in text
+
+
+def test_autoconfig_profiles_present():
+    base = ROOT / "Configs" / "autoconfig"
+    for rel in [
+        "dinput/Xbox_Controller.cfg",
+        "dinput/PS4_Controller.cfg",
+        "dinput/Switch_Pro_Controller.cfg",
+        "dinput/8BitDo_Generic.cfg",
+        "dinput/Generic_Gamepad.cfg",
+        "xinput/XInput_Generic.cfg",
+        "xinput/Xbox_One_Controller.cfg",
+        "xinput/Xbox_360_Controller.cfg",
+    ]:
+        assert (base / rel).exists(), rel
+
+
+def test_launcher_catalog_cli():
+    import subprocess
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "Launcher" / "launcher.py"), "--catalog"],
+        capture_output=True, text=True, timeout=120,
+    )
+    assert result.returncode == 0
+    assert "Free-games catalog" in result.stdout
+    assert "Curated entries" in result.stdout
 
 
 def test_cli_version_subprocess():

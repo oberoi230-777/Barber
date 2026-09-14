@@ -1,5 +1,50 @@
 # Changelog
 
+## v3.0.0 (2026-09-13) — Full-fledged multi-system suite
+
+### Systems (15 → **53**)
+- Nintendo: NES, SNES, N64, GB/GBC, GBA, NDS, Virtual Boy, Pokemon Mini, Game & Watch
+- Sega: Genesis, Master System, Game Gear, SG-1000, 32X, Sega CD, Saturn, Dreamcast
+- Sony: PlayStation, PSP
+- NEC/SNK: PC Engine, PCE CD, Neo Geo, Neo Geo CD, Neo Geo Pocket
+- Arcade: MAME 2003-Plus + FinalBurn Neo
+- Atari: 2600, 5200, 7800, Lynx, Jaguar, ST
+- Classic: ColecoVision, Intellivision, Odyssey 2, Vectrex, Channel F, 3DO, Arcadia 2001, WonderSwan, Supervision
+- Computers: MSX, ZX Spectrum, C64, Amiga, DOS, ScummVM, Amstrad CPC
+- Fantasy: TIC-80, PICO-8 (Retro8), WASM-4, LowRes NX, CHIP-8
+- Every system carries `category`, `era`, `players`, `description` for the new UI filters
+
+### Dual-player joysticks
+- RetroArch `input_max_users = 8` with **P1–P4 joypad indexes** pre-wired
+- P2 dedicated keyboard cluster (IJKL + F/G/R/T + B) for couch co-op without a second pad
+- Launcher accepts input from **any** connected controller; hotplug shows "2P OK"
+- New autoconfig profiles: 8BitDo, generic gamepad, Xbox One, Xbox 360 (xinput)
+- Header status: `2P OK | P1:… + P2:…` when two pads are live
+
+### Free-games catalog (future-safe)
+- NEW `Configs/free-games-catalog.json` — **159 curated legal entries** across all 53 systems
+- `Tools/download-roms` rewritten to be **catalog-driven** + live archive.org search
+- Flags: `-System All|Everything|<name>`, `-Query`, `-MaxFiles`, `-ListOnly`, `-Overwrite`
+- To expand forever: edit the JSON only — no code changes required
+- Launcher `--catalog` / `--list-systems` CLI
+
+### Launcher v3
+- Categories browser (F3/C), recents (F2), multiplayer filter, hide-empty (F7/E)
+- Type-to-filter on **systems** list as well as games
+- Left/Right + Tab cycle categories; LB/RB on controllers too
+- Settings persisted in `Configs/launcher-settings.json`
+- Health check reports system count + catalog stats
+
+### Cores & config
+- 45 libretro cores in `ps-common.ps1` + `setup.sh` (was 13)
+- Expanded `core-options.cfg` for new cores
+- Netplay + RetroAchievements + rewind pre-wired in `retroarch.cfg`
+- Per-core aspect, savestate compression, runtime logs
+
+### Quality
+- 32 automated tests (catalog, dual-player bindings, autoconfig, multiplayer systems)
+- Self-test requires ≥40 systems, ≥15 multiplayer, ≥50 catalog entries
+
 ## v2.0.2 (2026-09-13) — LAUNCH.bat no longer closes silently
 
 - FIXED: `LAUNCH.bat` flashed a console window and vanished when Python was

@@ -166,7 +166,8 @@ fi
 
 # --- 5. Cores (.so builds from the libretro buildbot) ------------------------
 if [ "$SKIP_CORES" -eq 0 ]; then
-  CORES="fceumm snes9x mupen64plus_next gambatte mgba desmume genesis_plus_gx pcsx_rearmed mame2003_plus fbneo stella flycast ppsspp"
+  # Keep in sync with Tools/ps-common.ps1 DefaultCoreDefinitions + Configs/systems.json
+  CORES="fceumm snes9x mupen64plus_next gambatte mgba desmume mednafen_vb pokemini gw genesis_plus_gx picodrive mednafen_saturn flycast pcsx_rearmed ppsspp mednafen_pce_fast fbneo neocd mednafen_ngp mame2003_plus stella a5200 prosystem handy virtualjaguar hatari gearcoleco freeintv o2em vecx freechaf mednafen_wswan potator opera bluemsx fuse vice_x64 puae dosbox_pure scummvm cap32 tic80 retro8 wasm4 lowresnx emux_chip8"
   if [ "$OS" = "Darwin" ]; then
     PLATFORM="apple/osx/universal"
     EXT="dylib"

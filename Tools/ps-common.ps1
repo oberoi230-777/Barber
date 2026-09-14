@@ -7,19 +7,61 @@ Set-StrictMode -Version Latest
 $script:PinnedStableVersion = "1.22.2"
 $script:LogFile = ""
 $script:DefaultCoreDefinitions = @(
+    # Nintendo
     @{ Name = "fceumm"; Desc = "Nintendo (NES)" },
     @{ Name = "snes9x"; Desc = "Super Nintendo" },
     @{ Name = "mupen64plus_next"; Desc = "Nintendo 64" },
     @{ Name = "gambatte"; Desc = "Game Boy / Game Boy Color" },
     @{ Name = "mgba"; Desc = "Game Boy Advance" },
     @{ Name = "desmume"; Desc = "Nintendo DS" },
-    @{ Name = "genesis_plus_gx"; Desc = "Sega Genesis / Master System / Game Gear" },
-    @{ Name = "pcsx_rearmed"; Desc = "PlayStation 1" },
-    @{ Name = "mame2003_plus"; Desc = "Arcade (MAME)" },
-    @{ Name = "fbneo"; Desc = "Neo Geo / Arcade" },
-    @{ Name = "stella"; Desc = "Atari 2600" },
+    @{ Name = "mednafen_vb"; Desc = "Virtual Boy" },
+    @{ Name = "pokemini"; Desc = "Pokemon Mini" },
+    @{ Name = "gw"; Desc = "Game & Watch" },
+    # Sega
+    @{ Name = "genesis_plus_gx"; Desc = "Sega Genesis / Master System / Game Gear / CD / SG-1000" },
+    @{ Name = "picodrive"; Desc = "Sega 32X / Genesis (PicoDrive)" },
+    @{ Name = "mednafen_saturn"; Desc = "Sega Saturn" },
     @{ Name = "flycast"; Desc = "Sega Dreamcast" },
-    @{ Name = "ppsspp"; Desc = "PlayStation Portable" }
+    # Sony
+    @{ Name = "pcsx_rearmed"; Desc = "PlayStation 1" },
+    @{ Name = "ppsspp"; Desc = "PlayStation Portable" },
+    # NEC / SNK
+    @{ Name = "mednafen_pce_fast"; Desc = "PC Engine / TurboGrafx-16" },
+    @{ Name = "fbneo"; Desc = "Neo Geo / Arcade (FBNeo)" },
+    @{ Name = "neocd"; Desc = "Neo Geo CD" },
+    @{ Name = "mednafen_ngp"; Desc = "Neo Geo Pocket" },
+    # Arcade
+    @{ Name = "mame2003_plus"; Desc = "Arcade (MAME 2003-Plus)" },
+    # Atari
+    @{ Name = "stella"; Desc = "Atari 2600" },
+    @{ Name = "a5200"; Desc = "Atari 5200" },
+    @{ Name = "prosystem"; Desc = "Atari 7800" },
+    @{ Name = "handy"; Desc = "Atari Lynx" },
+    @{ Name = "virtualjaguar"; Desc = "Atari Jaguar" },
+    @{ Name = "hatari"; Desc = "Atari ST" },
+    # Classic consoles
+    @{ Name = "gearcoleco"; Desc = "ColecoVision" },
+    @{ Name = "freeintv"; Desc = "Intellivision" },
+    @{ Name = "o2em"; Desc = "Odyssey 2" },
+    @{ Name = "vecx"; Desc = "Vectrex" },
+    @{ Name = "freechaf"; Desc = "Channel F" },
+    @{ Name = "mednafen_wswan"; Desc = "WonderSwan" },
+    @{ Name = "potator"; Desc = "Watara Supervision" },
+    @{ Name = "opera"; Desc = "3DO" },
+    # Computers
+    @{ Name = "bluemsx"; Desc = "MSX / MSX2" },
+    @{ Name = "fuse"; Desc = "ZX Spectrum" },
+    @{ Name = "vice_x64"; Desc = "Commodore 64" },
+    @{ Name = "puae"; Desc = "Commodore Amiga" },
+    @{ Name = "dosbox_pure"; Desc = "DOS / PC" },
+    @{ Name = "scummvm"; Desc = "ScummVM Adventures" },
+    @{ Name = "cap32"; Desc = "Amstrad CPC" },
+    # Fantasy consoles (huge free libraries)
+    @{ Name = "tic80"; Desc = "TIC-80" },
+    @{ Name = "retro8"; Desc = "PICO-8 (Retro8)" },
+    @{ Name = "wasm4"; Desc = "WASM-4" },
+    @{ Name = "lowresnx"; Desc = "LowRes NX" },
+    @{ Name = "emux_chip8"; Desc = "CHIP-8" }
 )
 
 # ---------------------------------------------------------------------------
@@ -228,7 +270,7 @@ function Get-VersionInfo {
     param([Parameter(Mandatory = $true)][string]$RootPath)
 
     $info = [pscustomobject]@{
-        Version = "2.0.0"
+        Version = "3.0.0"
         RetroArchStable = $script:PinnedStableVersion
     }
     $versionFile = Join-Path $RootPath "version.json"

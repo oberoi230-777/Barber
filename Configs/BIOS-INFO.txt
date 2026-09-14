@@ -142,3 +142,33 @@ For more information:
 * Per-core BIOS requirements: check each core's docs page
 
 ===================================================================
+
+
+================================================================================
+COMPLETE BIOS LIST (v3.0 — 53 systems)
+================================================================================
+The authoritative list is Configs/systems.json (each entry may include a
+"bios" array). Run:
+
+  python Launcher/launcher.py --check
+  Tools\diagnose.bat
+
+to see exactly which files YOU are missing for the systems you actually use.
+Common ones beyond PS1/DC/NDS/NeoGeo:
+
+  Sega CD ........ bios_CD_U.bin / bios_CD_E.bin / bios_CD_J.bin
+  Saturn ......... sega_101.bin, mpr-17933.bin
+  PCE CD ......... syscard3.pce
+  Neo Geo CD ..... neocd.bin, 000-lo.lo
+  Atari 5200 ..... 5200.rom
+  Atari 7800 ..... 7800 BIOS (U).rom
+  Atari Lynx ..... lynxboot.img
+  ColecoVision ... coleco.rom
+  Intellivision .. exec.bin, grom.bin
+  Odyssey 2 ...... o2rom.bin
+  3DO ............ panafz1.bin
+  Amiga .......... kick34005.A500, kick40068.A1200
+  Atari ST ....... tos.img
+  GBA (optional) . gba_bios.bin
+
+Place all BIOS files in:  Emulators/RetroArch/system/

@@ -1,0 +1,492 @@
+{
+  "version": "3.0.0",
+  "updated": "2026-09-13",
+  "description": "Curated LEGAL free / public-domain / open-source / homebrew games. Sources auto-refresh from archive.org metadata + itch.io + official project pages. NEVER includes copyrighted commercial ROMs.",
+  "legal_notice": "Only download titles you have rights to. Dump your own cartridges, use public-domain releases, or play homebrew. Commercial ROMs you do not own are illegal.",
+  "sources_info": {
+    "archive_org": "https://archive.org",
+    "itch_io": "https://itch.io/games/free/tag-homebrew",
+    "pdroms": "https://pdroms.de",
+    "romhacking": "https://www.romhacking.net",
+    "libretro_database": "https://github.com/libretro/libretro-database"
+  },
+  "systems": {
+    "NES": {
+      "search_keywords": "nes OR famicom AND (homebrew OR \"public domain\" OR \"open source\")",
+      "extensions": [".nes", ".unf", ".fds", ".zip"],
+      "entries": [
+        {"name": "Eyra the Crow Maiden (demo)", "item": "eyra-nesdemo", "files": ["eyrademo.nes"], "license": "open-source", "players": 1},
+        {"name": "The Arm Wrestling Classic", "item": "the-arm-wrestling-classic", "files": ["The Arm Wrestling Classic.nes"], "license": "homebrew", "players": 2},
+        {"name": "Alter Ego", "item": "alter-ego-nes", "files": [], "license": "homebrew", "players": 1, "search": true},
+        {"name": "Cheril the Goddess", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "cheril nes homebrew"},
+        {"name": "Lizard", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "lizard nes homebrew"},
+        {"name": "Streemerz", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "streemerz nes"},
+        {"name": "From Below", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"from below\" nes homebrew"},
+        {"name": "Solar Wars", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "solar wars nes"},
+        {"name": "Super Tilt Bro", "item": "", "files": [], "license": "open-source", "players": 2, "search_keywords": "\"super tilt bro\" nes"},
+        {"name": "NES 16", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "nes16 homebrew"},
+        {"name": "Driar", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "driar nes"},
+        {"name": "Micro Mages", "item": "", "files": [], "license": "homebrew", "players": 4, "search_keywords": "\"micro mages\" nes"},
+        {"name": "OWLSya", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "owlya nes"},
+        {"name": "Filthy Kitchen", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"filthy kitchen\" nes"},
+        {"name": "Twin Dragons", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "\"twin dragons\" nes"},
+        {"name": "Nomolos", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "nomolos nes"},
+        {"name": "Battle Kid", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"battle kid\" nes"},
+        {"name": "Action 53 Volume", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "\"action 53\" nes multicart"}
+      ]
+    },
+    "SNES": {
+      "search_keywords": "snes OR \"super nintendo\" OR \"super famicom\" AND (homebrew OR \"public domain\")",
+      "extensions": [".sfc", ".smc", ".zip"],
+      "entries": [
+        {"name": "Dottie Dreads Nough", "item": "dottie-dreads-nough-snesforever.com.br", "files": ["Dottie Dreads Nough - [snesforever.com.br].sfc"], "license": "homebrew", "players": 1},
+        {"name": "Super Boss Gaiden", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"super boss gaiden\" snes"},
+        {"name": "Bunbun World 2", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"bunbun world\" snes"},
+        {"name": "Uwol Quest for Money", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "uwol snes"},
+        {"name": "Dottie Flower", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"dottie flower\" snes"},
+        {"name": "FX Paint", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "fxpaint snes"},
+        {"name": "Jet Pilot Rising", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"jet pilot rising\" snes"},
+        {"name": "Classic Kong", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"classic kong\" snes"},
+        {"name": "N-Warp Daisakusen", "item": "", "files": [], "license": "homebrew", "players": 4, "search_keywords": "\"n-warp\" snes"},
+        {"name": "RPG Demo Pack", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "snes homebrew rpg demo"}
+      ]
+    },
+    "GameBoy": {
+      "search_keywords": "(\"game boy\" OR gameboy OR gbc) AND (homebrew OR \"public domain\" OR \"open source\")",
+      "extensions": [".gb", ".gbc", ".zip"],
+      "entries": [
+        {"name": "Damuel", "item": "damuel-project", "files": ["Damuel.gb"], "license": "public-domain", "players": 1},
+        {"name": "Tobu Tobu Girl", "item": "", "files": [], "license": "open-source", "players": 1, "search_keywords": "\"tobu tobu girl\" gameboy"},
+        {"name": "Deadeus", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "deadeus gameboy"},
+        {"name": "PostBot", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "postbot gameboy"},
+        {"name": "Infinity", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "infinity gameboy homebrew"},
+        {"name": "GB Corp", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"gb corp\" gameboy"},
+        {"name": "Dino's Offline Adventure", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "dino offline adventure gameboy"},
+        {"name": "Gun-Nac GB", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "gunnac gameboy homebrew"},
+        {"name": "Pretty Princess Party", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"pretty princess\" gameboy"},
+        {"name": "Scaz", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "scaz gameboy"},
+        {"name": "Froggie", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "froggie gameboy"},
+        {"name": "Libbet and the Magic Potion", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "libbet gameboy"}
+      ]
+    },
+    "GBA": {
+      "search_keywords": "(gba OR \"game boy advance\") AND (homebrew OR \"public domain\" OR \"open source\")",
+      "extensions": [".gba", ".zip"],
+      "entries": [
+        {"name": "Goodboy Galaxy (demo)", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"goodboy galaxy\" gba"},
+        {"name": "Advance Wars Open", "item": "", "files": [], "license": "open-source", "players": 2, "search_keywords": "advance wars open gba"},
+        {"name": "Another World GBA", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"another world\" gba homebrew"},
+        {"name": "Freespace", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "freespace gba"},
+        {"name": "Tilt to Live GBA", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "tilt gba homebrew"},
+        {"name": "Uwol Quest GBA", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "uwol gba"},
+        {"name": "Krawall", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "krawall gba"},
+        {"name": "GBA Homebrew Collection", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "gba homebrew collection"}
+      ]
+    },
+    "Genesis": {
+      "search_keywords": "(genesis OR \"mega drive\" OR megadrive) AND (homebrew OR \"public domain\" OR \"open source\")",
+      "extensions": [".md", ".gen", ".bin", ".smd", ".zip"],
+      "entries": [
+        {"name": "Tanglewood (demo)", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "tanglewood genesis demo"},
+        {"name": "Cave Story MD", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"cave story\" megadrive"},
+        {"name": "Deluxe 4-in-1", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "\"deluxe 4\" genesis homebrew"},
+        {"name": "Xeno Crisis (demo)", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "\"xeno crisis\" genesis"},
+        {"name": "Sonic 1 Remastered (fangame free)", "item": "", "files": [], "license": "fangame", "players": 1, "search_keywords": "sonic remastered megadrive homebrew"},
+        {"name": "Mode Switcher", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "mode switcher genesis"},
+        {"name": "Streets of Rage Remake free stages", "item": "", "files": [], "license": "fangame", "players": 2, "search_keywords": "streets rage genesis homebrew"},
+        {"name": "16-Bit Rickroll", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "rickroll genesis"},
+        {"name": "Genesis Homebrew Pack", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "\"mega drive\" homebrew collection"}
+      ]
+    },
+    "MasterSystem": {
+      "search_keywords": "(\"master system\" OR mastersystem OR sms) AND homebrew",
+      "extensions": [".sms", ".zip"],
+      "entries": [
+        {"name": "DARC", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "darc mastersystem"},
+        {"name": "Wing Warriors", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"wing warriors\" sms"},
+        {"name": "Bara Buru", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "baraburu sms"},
+        {"name": "SMS Power Competition entries", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "\"sms power\" homebrew"}
+      ]
+    },
+    "GameGear": {
+      "search_keywords": "(\"game gear\" OR gamegear) AND homebrew",
+      "extensions": [".gg", ".zip"],
+      "entries": [
+        {"name": "GG Shinobi homebrew", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "gamegear homebrew"},
+        {"name": "Turrican GG", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "turrican gamegear homebrew"}
+      ]
+    },
+    "N64": {
+      "search_keywords": "(\"nintendo 64\" OR n64) AND (homebrew OR \"open source\" OR demo)",
+      "extensions": [".z64", ".n64", ".v64", ".zip"],
+      "entries": [
+        {"name": "libdragon demos", "item": "", "files": [], "license": "open-source", "players": 1, "search_keywords": "libdragon n64 demo"},
+        {"name": "N64Brew Game Jam", "item": "", "files": [], "license": "homebrew", "players": 4, "search_keywords": "n64brew jam"},
+        {"name": "Super Mario 64 Open (pc port free assets note)", "item": "", "files": [], "license": "open-source", "players": 1, "search_keywords": "sm64 open source n64"},
+        {"name": "Controller Test", "item": "", "files": [], "license": "homebrew", "players": 4, "search_keywords": "n64 controller test homebrew"}
+      ]
+    },
+    "Atari2600": {
+      "search_keywords": "(\"atari 2600\" OR \"atari vcs\") AND (homebrew OR \"public domain\")",
+      "extensions": [".a26", ".bin", ".zip"],
+      "entries": [
+        {"name": "Thrust", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "thrust atari2600"},
+        {"name": "Oystron", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "oystron atari"},
+        {"name": "Juno First", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"juno first\" atari2600"},
+        {"name": "Space Treat", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"space treat\" atari"},
+        {"name": "Climber 5", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "climber5 atari"},
+        {"name": "A-VCS-tec Challenge", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "avcstec atari"},
+        {"name": "Halo 2600", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "halo 2600"},
+        {"name": "Okie Dokie", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"okie dokie\" atari"},
+        {"name": "Conquest of Mars", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"conquest of mars\" atari"},
+        {"name": "AtariAge Homebrew Pack", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "atariage homebrew collection"}
+      ]
+    },
+    "Atari7800": {
+      "search_keywords": "(\"atari 7800\") AND homebrew",
+      "extensions": [".a78", ".bin", ".zip"],
+      "entries": [
+        {"name": "Scramble 7800", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "scramble 7800"},
+        {"name": "FailSafe", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "failsafe 7800"},
+        {"name": "Beef Drop", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"beef drop\" 7800"}
+      ]
+    },
+    "AtariLynx": {
+      "search_keywords": "(\"atari lynx\") AND homebrew",
+      "extensions": [".lnx", ".zip"],
+      "entries": [
+        {"name": "Lynx Homebrew Pack", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "lynx homebrew"}
+      ]
+    },
+    "ColecoVision": {
+      "search_keywords": "colecovision AND homebrew",
+      "extensions": [".col", ".rom", ".bin", ".zip"],
+      "entries": [
+        {"name": "ColecoVision Homebrew", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "colecovision homebrew"},
+        {"name": "Ghostblaster", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "ghostblaster coleco"}
+      ]
+    },
+    "Intellivision": {
+      "search_keywords": "intellivision AND homebrew",
+      "extensions": [".int", ".bin", ".rom", ".zip"],
+      "entries": [
+        {"name": "Intellivision Homebrew", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "intellivision homebrew"}
+      ]
+    },
+    "Vectrex": {
+      "search_keywords": "vectrex AND (homebrew OR \"public domain\")",
+      "extensions": [".vec", ".bin", ".zip"],
+      "entries": [
+        {"name": "Vectrex Homebrew Pack", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "vectrex homebrew"},
+        {"name": "Spike's Water Balloons", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "spike vectrex"}
+      ]
+    },
+    "PCEngine": {
+      "search_keywords": "(\"pc engine\" OR turbografx OR pce) AND homebrew",
+      "extensions": [".pce", ".sgx", ".zip"],
+      "entries": [
+        {"name": "Bonk's Adventure style homebrew", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"pc engine\" homebrew"},
+        {"name": "HuC demos", "item": "", "files": [], "license": "open-source", "players": 1, "search_keywords": "huc pce demo"}
+      ]
+    },
+    "NeoGeoPocket": {
+      "search_keywords": "(\"neo geo pocket\" OR ngp OR ngpc) AND homebrew",
+      "extensions": [".ngp", ".ngc", ".zip"],
+      "entries": [
+        {"name": "NGP Homebrew", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"neo geo pocket\" homebrew"}
+      ]
+    },
+    "WonderSwan": {
+      "search_keywords": "(wonderswan OR \"wonder swan\") AND homebrew",
+      "extensions": [".ws", ".wsc", ".zip"],
+      "entries": [
+        {"name": "WonderSwan Homebrew", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "wonderswan homebrew"}
+      ]
+    },
+    "VirtualBoy": {
+      "search_keywords": "(\"virtual boy\") AND homebrew",
+      "extensions": [".vb", ".zip"],
+      "entries": [
+        {"name": "Virtual Boy Homebrew", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"virtual boy\" homebrew"}
+      ]
+    },
+    "MSX": {
+      "search_keywords": "msx AND (homebrew OR \"public domain\" OR \"open source\")",
+      "extensions": [".rom", ".dsk", ".mx1", ".mx2", ".zip"],
+      "entries": [
+        {"name": "MSXdev entries", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "msxdev homebrew"},
+        {"name": "Uranium Mine", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "uranium mine msx"},
+        {"name": "Night Pirate", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"night pirate\" msx"},
+        {"name": "Penguin Adventure open", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "msx homebrew collection"}
+      ]
+    },
+    "ZXSpectrum": {
+      "search_keywords": "(\"zx spectrum\" OR zxspectrum OR spectrum) AND (homebrew OR \"public domain\")",
+      "extensions": [".tzx", ".tap", ".z80", ".zip"],
+      "entries": [
+        {"name": "Manic Miner (public domain releases vary)", "item": "", "files": [], "license": "check-license", "players": 1, "search_keywords": "spectrum homebrew 2020"},
+        {"name": "Speccy Homebrew Pack", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"zx spectrum\" homebrew"},
+        {"name": "Morse", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "morse spectrum homebrew"},
+        {"name": "Reliquary", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "reliquary spectrum"}
+      ]
+    },
+    "C64": {
+      "search_keywords": "(\"commodore 64\" OR c64) AND (homebrew OR \"public domain\" OR demo)",
+      "extensions": [".d64", ".t64", ".prg", ".crt", ".zip"],
+      "entries": [
+        {"name": "CSDb Public Domain", "item": "", "files": [], "license": "public-domain", "players": 2, "search_keywords": "c64 public domain games"},
+        {"name": "C64 Homebrew", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "commodore 64 homebrew"},
+        {"name": "Petscii Robots", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "petscii robots c64"}
+      ]
+    },
+    "Amiga": {
+      "search_keywords": "amiga AND (homebrew OR \"public domain\" OR \"open source\" OR freeware)",
+      "extensions": [".adf", ".ipf", ".lha", ".zip"],
+      "entries": [
+        {"name": "Amiga Freeware Games", "item": "", "files": [], "license": "freeware", "players": 2, "search_keywords": "amiga freeware games"},
+        {"name": "Super Foul Egg", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "\"super foul egg\" amiga"},
+        {"name": "Battle Squadron open", "item": "", "files": [], "license": "check-license", "players": 2, "search_keywords": "amiga homebrew shmup"}
+      ]
+    },
+    "DOS": {
+      "search_keywords": "dos OR msdos AND (\"public domain\" OR shareware OR freeware) AND game",
+      "extensions": [".zip", ".exe", ".com", ".iso"],
+      "entries": [
+        {"name": "DOS Shareware Classics (legal)", "item": "dosgames", "files": [], "license": "shareware", "players": 2, "search": true},
+        {"name": "Commander Keen shareware", "item": "", "files": [], "license": "shareware", "players": 1, "search_keywords": "commander keen shareware"},
+        {"name": "Doom shareware", "item": "", "files": [], "license": "shareware", "players": 1, "search_keywords": "doom shareware wad"},
+        {"name": "Wolfenstein 3D shareware", "item": "", "files": [], "license": "shareware", "players": 1, "search_keywords": "wolfenstein shareware"},
+        {"name": "Crystal Caves shareware", "item": "", "files": [], "license": "shareware", "players": 1, "search_keywords": "crystal caves shareware"},
+        {"name": "Jill of the Jungle shareware", "item": "", "files": [], "license": "shareware", "players": 1, "search_keywords": "jill jungle shareware"},
+        {"name": "Raptor shareware", "item": "", "files": [], "license": "shareware", "players": 1, "search_keywords": "raptor call shadows shareware"},
+        {"name": "FreeDOS Games Collection", "item": "", "files": [], "license": "freeware", "players": 2, "search_keywords": "freedos games"}
+      ]
+    },
+    "Arcade": {
+      "search_keywords": "mame AND (homebrew OR \"public domain\" OR freeware) AND (rom OR zip)",
+      "extensions": [".zip"],
+      "entries": [
+        {"name": "Gridlee (public domain)", "item": "", "files": [], "license": "public-domain", "players": 2, "search_keywords": "gridlee mame"},
+        {"name": "Robby Roto", "item": "", "files": [], "license": "check-license", "players": 2, "search_keywords": "robbyroto mame"},
+        {"name": "Looping", "item": "", "files": [], "license": "check-license", "players": 2, "search_keywords": "looping mame public"},
+        {"name": "Arcade Homebrew", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "mame homebrew game"}
+      ]
+    },
+    "TIC80": {
+      "search_keywords": "tic-80 OR tic80 cart",
+      "extensions": [".tic"],
+      "entries": [
+        {"name": "TIC-80 Featured Carts", "item": "", "files": [], "license": "open-source", "players": 4, "search_keywords": "tic80 cart"},
+        {"name": "Tiny Quest", "item": "", "files": [], "license": "open-source", "players": 1, "search_keywords": "tiny quest tic80"},
+        {"name": "WASM-style TIC demos", "item": "", "files": [], "license": "open-source", "players": 1, "search_keywords": "tic-80 game"}
+      ]
+    },
+    "PICO8": {
+      "search_keywords": "pico-8 OR pico8 (cart OR \"open source\")",
+      "extensions": [".p8", ".png"],
+      "entries": [
+        {"name": "PICO-8 Education carts", "item": "", "files": [], "license": "open-source", "players": 1, "search_keywords": "pico-8 education"},
+        {"name": "Open PICO carts", "item": "", "files": [], "license": "open-source", "players": 2, "search_keywords": "pico8 open cart"}
+      ]
+    },
+    "WASM4": {
+      "search_keywords": "wasm-4 OR wasm4 cart",
+      "extensions": [".wasm"],
+      "entries": [
+        {"name": "WASM-4 Official Carts", "item": "", "files": [], "license": "open-source", "players": 4, "search_keywords": "wasm4 cart"},
+        {"name": "WASM-4 Game Jam", "item": "", "files": [], "license": "open-source", "players": 4, "search_keywords": "wasm-4 jam"}
+      ]
+    },
+    "CHIP8": {
+      "search_keywords": "chip-8 OR chip8 rom",
+      "extensions": [".ch8", ".c8", ".zip"],
+      "entries": [
+        {"name": "CHIP-8 Program Pack", "item": "", "files": [], "license": "public-domain", "players": 1, "search_keywords": "chip-8 roms"},
+        {"name": "SuperChip demos", "item": "", "files": [], "license": "public-domain", "players": 1, "search_keywords": "superchip rom"}
+      ]
+    },
+    "LowResNX": {
+      "search_keywords": "lowresnx OR \"lowres nx\"",
+      "extensions": [".nx"],
+      "entries": [
+        {"name": "LowRes NX programs", "item": "", "files": [], "license": "open-source", "players": 2, "search_keywords": "lowresnx"}
+      ]
+    },
+    "GameAndWatch": {
+      "search_keywords": "\"game and watch\" OR gameandwatch OR \"gw_\" mame",
+      "extensions": [".mgw", ".zip"],
+      "entries": [
+        {"name": "LCD Games collection note", "item": "", "files": [], "license": "check-license", "players": 1, "search_keywords": "game and watch homebrew"}
+      ]
+    },
+    "PokemonMini": {
+      "search_keywords": "\"pokemon mini\" homebrew",
+      "extensions": [".min", ".zip"],
+      "entries": [
+        {"name": "Pokemon Mini Homebrew", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "\"pokemon mini\" homebrew"}
+      ]
+    },
+    "ChannelF": {
+      "search_keywords": "\"channel f\" OR channelf homebrew",
+      "extensions": [".bin", ".chf", ".zip"],
+      "entries": [
+        {"name": "Channel F Homebrew", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "\"channel f\" homebrew"}
+      ]
+    },
+    "Odyssey2": {
+      "search_keywords": "(odyssey2 OR videopac) AND homebrew",
+      "extensions": [".bin", ".zip"],
+      "entries": [
+        {"name": "Odyssey 2 Homebrew", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "odyssey2 homebrew"}
+      ]
+    },
+    "Supervision": {
+      "search_keywords": "supervision watara homebrew",
+      "extensions": [".sv", ".bin", ".zip"],
+      "entries": [
+        {"name": "Supervision Homebrew", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "watara supervision homebrew"}
+      ]
+    },
+    "AmstradCPC": {
+      "search_keywords": "(\"amstrad cpc\" OR amstradcpc) AND (homebrew OR \"public domain\")",
+      "extensions": [".dsk", ".sna", ".cdt", ".zip"],
+      "entries": [
+        {"name": "CPC Homebrew", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "amstrad cpc homebrew"},
+        {"name": "CPC RetroDev", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "cpcretrodev"}
+      ]
+    },
+    "SG1000": {
+      "search_keywords": "sg-1000 OR sg1000 homebrew",
+      "extensions": [".sg", ".zip"],
+      "entries": [
+        {"name": "SG-1000 Homebrew", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "sg-1000 homebrew"}
+      ]
+    },
+    "ScummVM": {
+      "search_keywords": "scummvm AND (freeware OR \"public domain\" OR \"agile\" OR beneath)",
+      "extensions": [".scummvm", ".svm"],
+      "entries": [
+        {"name": "Beneath a Steel Sky (freeware)", "item": "", "files": [], "license": "freeware", "players": 1, "search_keywords": "\"beneath a steel sky\" freeware"},
+        {"name": "Flight of the Amazon Queen (freeware)", "item": "", "files": [], "license": "freeware", "players": 1, "search_keywords": "\"amazon queen\" freeware"},
+        {"name": "Lure of the Temptress (freeware)", "item": "", "files": [], "license": "freeware", "players": 1, "search_keywords": "\"lure of the temptress\" freeware"},
+        {"name": "Drascula (freeware)", "item": "", "files": [], "license": "freeware", "players": 1, "search_keywords": "drascula freeware"}
+      ]
+    },
+    "NDS": {
+      "search_keywords": "(\"nintendo ds\" OR nds) AND homebrew",
+      "extensions": [".nds", ".zip"],
+      "entries": [
+        {"name": "NDS Homebrew Scene", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "nintendo ds homebrew"},
+        {"name": "DSOrganize / tools note", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "nds homebrew game"}
+      ]
+    },
+    "PSP": {
+      "search_keywords": "psp AND (homebrew OR \"open source\")",
+      "extensions": [".iso", ".cso", ".pbp"],
+      "entries": [
+        {"name": "PSP Homebrew Games", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "psp homebrew game"},
+        {"name": "Lua Player games", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "psp lua homebrew"}
+      ]
+    },
+    "Dreamcast": {
+      "search_keywords": "dreamcast AND (homebrew OR \"open source\" OR demo)",
+      "extensions": [".cdi", ".gdi", ".chd"],
+      "entries": [
+        {"name": "Dreamcast Homebrew", "item": "", "files": [], "license": "homebrew", "players": 4, "search_keywords": "dreamcast homebrew"},
+        {"name": "KallistiOS demos", "item": "", "files": [], "license": "open-source", "players": 1, "search_keywords": "kallistios dreamcast demo"}
+      ]
+    },
+    "PlayStation": {
+      "search_keywords": "(\"playstation\" OR psx OR ps1) AND (homebrew OR \"open source\" OR demo) AND -bios",
+      "extensions": [".cue", ".pbp", ".chd", ".bin"],
+      "entries": [
+        {"name": "PS1 Homebrew", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "psx homebrew game"},
+        {"name": "Hitmen demos", "item": "", "files": [], "license": "homebrew", "players": 1, "search_keywords": "hitmen psx demo"}
+      ]
+    },
+    "FBNeo": {
+      "search_keywords": "fbneo OR \"final burn\" homebrew",
+      "extensions": [".zip"],
+      "entries": [
+        {"name": "FBNeo homebrew sets", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "fbneo homebrew"}
+      ]
+    },
+    "NeoGeo": {
+      "search_keywords": "\"neo geo\" homebrew -cd",
+      "extensions": [".zip"],
+      "entries": [
+        {"name": "Neo Geo Homebrew", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "neogeo homebrew"}
+      ]
+    },
+    "AtariJaguar": {
+      "search_keywords": "(\"atari jaguar\") AND homebrew",
+      "extensions": [".j64", ".jag", ".rom", ".zip"],
+      "entries": [
+        {"name": "Jaguar Homebrew", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "jaguar homebrew"}
+      ]
+    },
+    "Atari5200": {
+      "search_keywords": "(\"atari 5200\") AND homebrew",
+      "extensions": [".a52", ".bin", ".zip"],
+      "entries": [
+        {"name": "Atari 5200 Homebrew", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "atari 5200 homebrew"}
+      ]
+    },
+    "AtariST": {
+      "search_keywords": "(\"atari st\") AND (homebrew OR freeware)",
+      "extensions": [".st", ".msa", ".zip"],
+      "entries": [
+        {"name": "Atari ST Freeware", "item": "", "files": [], "license": "freeware", "players": 1, "search_keywords": "atari st freeware games"}
+      ]
+    },
+    "3DO": {
+      "search_keywords": "3do AND (homebrew OR demo)",
+      "extensions": [".iso", ".cue", ".chd"],
+      "entries": [
+        {"name": "3DO Homebrew / demos", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "3do homebrew"}
+      ]
+    },
+    "Sega32X": {
+      "search_keywords": "(\"sega 32x\" OR 32x) AND homebrew",
+      "extensions": [".32x", ".zip"],
+      "entries": [
+        {"name": "32X Homebrew", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "32x homebrew"}
+      ]
+    },
+    "Saturn": {
+      "search_keywords": "(\"sega saturn\") AND homebrew",
+      "extensions": [".cue", ".chd", ".iso"],
+      "entries": [
+        {"name": "Saturn Homebrew", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "saturn homebrew"}
+      ]
+    },
+    "SegaCD": {
+      "search_keywords": "(\"sega cd\" OR mega-cd OR megacd) AND homebrew",
+      "extensions": [".cue", ".chd", ".iso"],
+      "entries": [
+        {"name": "Sega CD Homebrew", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "\"sega cd\" homebrew"}
+      ]
+    },
+    "NeoGeoCD": {
+      "search_keywords": "(\"neo geo cd\") AND homebrew",
+      "extensions": [".cue", ".chd", ".iso"],
+      "entries": [
+        {"name": "Neo Geo CD Homebrew", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "\"neo geo cd\" homebrew"}
+      ]
+    },
+    "PCEngineCD": {
+      "search_keywords": "(\"pc engine cd\" OR \"turbografx cd\") AND homebrew",
+      "extensions": [".cue", ".chd", ".iso"],
+      "entries": [
+        {"name": "PCE CD Homebrew", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "\"pc engine cd\" homebrew"}
+      ]
+    },
+    "Arcadia2001": {
+      "search_keywords": "\"arcadia 2001\" homebrew",
+      "extensions": [".bin", ".zip"],
+      "entries": [
+        {"name": "Arcadia 2001 Homebrew", "item": "", "files": [], "license": "homebrew", "players": 2, "search_keywords": "arcadia 2001 homebrew"}
+      ]
+    }
+  }
+}
