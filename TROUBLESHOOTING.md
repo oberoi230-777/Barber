@@ -388,3 +388,34 @@ doing, plus the outputs of `python --version` and `LAUNCH.bat --check`.
 - ✅ Connecting the controller before launching
 
 Happy Gaming! 🎮
+
+## Two controllers / 2-player not working
+
+1. **Confirm both pads are seen by the OS**
+   - Run `Tools/test-controller.bat`
+   - Move sticks / press buttons on **both** pads — both should react
+
+2. **Confirm the launcher sees them**
+   - Launch the suite; the top-right header should read `2P OK | P1:… + P2:…`
+   - If it says `1 controller`, unplug/replug the second pad (hotplug is supported)
+   - Press R on the systems list to force a rescan + controller refresh
+
+3. **Prefer XInput on Windows**
+   - Xbox pads: native XInput (best)
+   - DualShock / DualSense: use DS4Windows in XInput mode
+   - 8BitDo: set the mode switch to **X** (not D/Android)
+   - Profiles live in `Configs/autoconfig/xinput/` and `dinput/`
+
+4. **In-game port assignment**
+   - RetroArch is pre-configured: Port 1 = joypad index 0, Port 2 = index 1
+   - Quick menu (F1) → Controls → Port 1 / Port 2 Controls → Device Index
+   - `input_max_users = 8` so N64 / arcade 3P+ also work
+
+5. **Keyboard fallback (no second pad)**
+   - P1: Arrows + Z/X/A/S + Enter
+   - P2: **I J K L** (move) + F/G (B/A) + R/T (Y/X) + B (Start) + V (Select)
+
+6. **Still stuck?**
+   - `Tools/diagnose.bat -Fix` re-copies autoconfig profiles
+   - Check `Logs/launcher.log` for `Controller P1:` / `Controller P2:` lines
+

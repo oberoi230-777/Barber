@@ -1,7 +1,18 @@
 {
   "name": "Portable Retro Gaming Suite",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "updated": "2026-09-13",
   "retroarchStable": "1.22.2",
-  "pythonMinimum": "3.9"
+  "pythonMinimum": "3.9",
+  "systems": 53,
+  "features": [
+    "50+ systems",
+    "dual-player joysticks",
+    "free-games catalog",
+    "categories",
+    "netplay-ready",
+    "retroachievements-ready",
+    "rewind",
+    "cross-platform"
+  ]
 }
